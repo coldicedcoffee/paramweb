@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Param Pabari — Finance & Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="#">Param Pabari</a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="site-nav" class="site-nav">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Helping businesses grow with clarity and data</h1>
+          <p class="lead">I design financial strategies, model outcomes, and advise leadership to improve profitability and scale operations.</p>
+          <p class="ctas">
+            <a class="btn primary" href="#contact">Work with me</a>
+            <a class="btn outline" href="#work">View case studies</a>
+          </p>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <svg viewBox="0 0 600 400" class="hero-illus" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#5eead4"/>
+                <stop offset="1" stop-color="#60a5fa"/>
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" rx="12" fill="url(#g)" />
+            <g fill="#fff" opacity="0.95">
+              <rect x="40" y="60" width="260" height="28" rx="6" />
+              <rect x="40" y="110" width="500" height="16" rx="6" />
+              <rect x="40" y="136" width="420" height="16" rx="6" />
+              <rect x="40" y="162" width="200" height="80" rx="6" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <h2>About</h2>
+      <div class="split">
+        <p>I combine financial analysis, market research and practical execution to help mid-size companies and startups scale responsibly. My background includes FP&A, M&A advisory and operational consulting.</p>
+        <ul>
+          <li>Financial modelling & valuation</li>
+          <li>Go-to-market and commercial strategy</li>
+          <li>Operational improvement & KPI design</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="services" class="section alt">
+      <div class="container">
+        <h2>Services</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Strategy & Planning</h3>
+            <p>Long-term planning, market sizing, and investment prioritization.</p>
+          </article>
+          <article class="card">
+            <h3>Financial Modelling</h3>
+            <p>Robust models for forecasting, fundraising and M&A diligence.</p>
+          </article>
+          <article class="card">
+            <h3>Execution Support</h3>
+            <p>Implementation, KPI dashboards, and change management.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section container">
+      <h2>Selected Case Studies</h2>
+      <div class="work-list">
+        <article class="work-item">
+          <h4>Turnaround of a SaaS portfolio</h4>
+          <p>Restructured pricing and sales incentives, improving ARR growth by 28% year-over-year.</p>
+        </article>
+        <article class="work-item">
+          <h4>Commercial due diligence</h4>
+          <p>Delivered go/no-go recommendation for PE buyer with scenario modelling and downside mitigations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Let's talk about your priorities — pricing model, growth plan, or an upcoming raise.</p>
+        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Param Pabari — Finance & Consulting</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
