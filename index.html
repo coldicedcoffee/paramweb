@@ -4,126 +4,133 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Param Pabari — Finance & Consulting</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Fonts: Space Grotesk (Tech/Rough) + Cormorant Garamond (Classy/Mature) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <div class="grid-bg"></div>
+
   <header class="site-header">
-    <div class="container header-grid">
-      <a class="brand" href="#">Param Pabari</a>
+    <div class="container nav-flex">
+      <a class="brand" href="index.html">Param Pabari</a>
       <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
-      <nav id="site-nav" class="site-nav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
+      <nav id="site-nav" class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <h1>Helping businesses grow with clarity and data</h1>
-          <p class="lead">I design financial strategies, model outcomes, and advise leadership to improve profitability and scale operations.</p>
-          <p class="ctas">
-            <a class="btn primary" href="#contact">Work with me</a>
-            <a class="btn outline" href="#work">View case studies</a>
-          </p>
+    <section class="hero container">
+      <div class="hero-content fade-in">
+        <h1 class="hero-display">
+          Precision in<br>
+          <span>Financial Strategy</span>
+        </h1>
+        <p class="fade-in delay-1">
+          Param Pabari is a finance & strategy consultant helping organizations navigate complex markets, optimize capital allocation, and drive sustainable growth through data-driven execution.
+        </p>
+        <div class="fade-in delay-2" style="margin-top: 2rem;">
+          <a class="btn btn-primary" href="projects.html">View Case Studies</a>
+          <a class="btn" href="contact.html" style="margin-left: 1rem;">Get in Touch</a>
         </div>
-        <div class="hero-card" aria-hidden="true">
-          <svg viewBox="0 0 600 400" class="hero-illus" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g" x1="0" x2="1">
-                <stop offset="0" stop-color="#5eead4"/>
-                <stop offset="1" stop-color="#60a5fa"/>
-              </linearGradient>
-            </defs>
-            <rect width="100%" height="100%" rx="12" fill="url(#g)" />
-            <g fill="#fff" opacity="0.95">
-              <rect x="40" y="60" width="260" height="28" rx="6" />
-              <rect x="40" y="110" width="500" height="16" rx="6" />
-              <rect x="40" y="136" width="420" height="16" rx="6" />
-              <rect x="40" y="162" width="200" height="80" rx="6" />
-            </g>
-          </svg>
-        </div>
-      </div>
-    </section>
 
-    <section id="about" class="section container">
-      <h2>About</h2>
-      <div class="split">
-        <p>I combine financial analysis, market research and practical execution to help mid-size companies and startups scale responsibly. My background includes FP&A, M&A advisory and operational consulting.</p>
-        <ul>
-          <li>Financial modelling & valuation</li>
-          <li>Go-to-market and commercial strategy</li>
-          <li>Operational improvement & KPI design</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="services" class="section alt">
-      <div class="container">
-        <h2>Services</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Strategy & Planning</h3>
-            <p>Long-term planning, market sizing, and investment prioritization.</p>
-          </article>
-          <article class="card">
-            <h3>Financial Modelling</h3>
-            <p>Robust models for forecasting, fundraising and M&A diligence.</p>
-          </article>
-          <article class="card">
-            <h3>Execution Support</h3>
-            <p>Implementation, KPI dashboards, and change management.</p>
-          </article>
+        <div class="stat-grid fade-in delay-3">
+          <div class="stat">
+            <h4>$50M+</h4>
+            <p>Capital Deployed</p>
+          </div>
+          <div class="stat">
+            <h4>12+</h4>
+            <p>M&A Deals Advised</p>
+          </div>
+          <div class="stat">
+            <h4>4.5x</h4>
+            <p>Avg ROI</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="work" class="section container">
-      <h2>Selected Case Studies</h2>
-      <div class="work-list">
-        <article class="work-item">
-          <h4>Turnaround of a SaaS portfolio</h4>
-          <p>Restructured pricing and sales incentives, improving ARR growth by 28% year-over-year.</p>
-        </article>
-        <article class="work-item">
-          <h4>Commercial due diligence</h4>
-          <p>Delivered go/no-go recommendation for PE buyer with scenario modelling and downside mitigations.</p>
-        </article>
+    <section class="section container">
+      <div class="fade-in">
+        <h2>Selected Works</h2>
+        <div class="project-grid">
+          <article class="project-card" onclick="window.location.href='projects.html'">
+            <div class="project-image">
+              <!-- Placeholder for rough edges look, usually a grayscale img -->
+              <div style="width:100%;height:100%;background:linear-gradient(45deg, #111, #222);"></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">SaaS / Strategy</div>
+              <h3>Series B Fundraising Model</h3>
+              <p>Built the financial narrative and operating model for a $30M raise.</p>
+            </div>
+          </article>
+          <article class="project-card" onclick="window.location.href='projects.html'">
+            <div class="project-image">
+              <div style="width:100%;height:100%;background:linear-gradient(45deg, #1a1a1a, #2a2a2a);"></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">Retail / Operations</div>
+              <h3>Supply Chain Optimization</h3>
+              <p>Reduced inventory overhead by 18% through predictive forecasting.</p>
+            </div>
+          </article>
+          <article class="project-card" onclick="window.location.href='projects.html'">
+            <div class="project-image">
+              <div style="width:100%;height:100%;background:linear-gradient(45deg, #050505, #151515);"></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">Fintech / M&A</div>
+              <h3>Buy-Side Due Diligence</h3>
+              <p>Commercial and financial diligence for a cross-border acquisition.</p>
+            </div>
+          </article>
+        </div>
+        <div style="margin-top:3rem; text-align:center;">
+          <a class="btn" href="projects.html">View All Projects</a>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section alt">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>Let's talk about your priorities — pricing model, growth plan, or an upcoming raise.</p>
-        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" required>
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" required>
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-          <button class="btn primary" type="submit">Send</button>
-        </form>
+    <section class="section container">
+      <div class="fade-in">
+        <h2>Recent Thoughts</h2>
+        <div class="blog-list">
+          <a href="#" class="blog-item">
+            <h3>The Death of Traditional FP&A</h3>
+            <span class="blog-date">Oct 12, 2025</span>
+          </a>
+          <a href="#" class="blog-item">
+            <h3>Why EBITDA is Lying to You</h3>
+            <span class="blog-date">Sep 28, 2025</span>
+          </a>
+          <a href="#" class="blog-item">
+            <h3>Structuring Deals in High Interest Rate Environments</h3>
+            <span class="blog-date">Aug 15, 2025</span>
+          </a>
+        </div>
+        <div style="margin-top:2rem;">
+          <a class="btn" href="blog.html">Read Journal</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container">
-      <p>&copy; <span id="year"></span> Param Pabari — Finance & Consulting</p>
+      <p>&copy; 2026 Param Pabari. All rights reserved.</p>
     </div>
   </footer>
 

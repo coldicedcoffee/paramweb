@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Param Pabari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <header class="site-header">
+    <div class="container nav-flex">
+      <a class="brand" href="index.html">Param Pabari</a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="site-nav" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="fade-in">
+        <h1>Let's Initiate a Dialogue.</h1>
+        <p class="delay-1">Available for advisory roles, fractional CFO work, and strategic consulting projects.</p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; margin-top:4rem;">
+            <div class="contact-form-wrapper delay-2">
+                <form action="#" method="POST">
+                    <label style="display:block; margin-bottom:0.5rem; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.1em; color:#888;">Name</label>
+                    <input type="text" name="name" required placeholder="John Doe">
+                    
+                    <label style="display:block; margin-bottom:0.5rem; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.1em; color:#888;">Email</label>
+                    <input type="email" name="email" required placeholder="john@company.com">
+                    
+                    <label style="display:block; margin-bottom:0.5rem; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.1em; color:#888;">Inquiry</label>
+                    <textarea name="message" rows="4" required placeholder="Tell me about your project..."></textarea>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info delay-3">
+                <div style="margin-bottom:2rem;">
+                    <h3>Email</h3>
+                    <p><a href="mailto:param@example.com" style="border-bottom:1px solid #666;">param@example.com</a></p>
+                </div>
+                <div style="margin-bottom:2rem;">
+                    <h3>Socials</h3>
+                    <p>
+                        <a href="#" style="margin-right:1rem;">LinkedIn</a>
+                        <a href="#" style="margin-right:1rem;">Twitter / X</a>
+                    </p>
+                </div>
+                <div>
+                   <h3>Location</h3>
+                   <p>Mumbai / Remote</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Param Pabari. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
