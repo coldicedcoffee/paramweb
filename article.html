@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Article — Param Pabari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .article-header { padding: 4rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .article-meta { color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; margin-bottom: 1rem; }
+    .article-content { font-size: 1.2rem; line-height: 1.8; margin-top: 3rem; color: #ccc; }
+    .article-content h2, .article-content h3 { margin-top: 3rem; color: #fff; }
+    .article-content strong { color: #fff; }
+    .article-hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-top: 2rem; display:none;}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <header class="site-header">
+    <div class="container nav-flex">
+      <a class="brand" href="index.html">Param Pabari</a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="site-nav" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html" class="active">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="container">
+      <div id="loading" style="padding: 4rem 0; text-align:center;">Loading article...</div>
+      
+      <div id="article-view" style="display:none;" class="fade-in">
+        <header class="article-header">
+          <div class="article-meta" id="art-date"></div>
+          <h1 id="art-title"></h1>
+          <img src="" id="art-img" class="article-hero-img">
+        </header>
+        <div class="article-content" id="art-body">
+          <!-- Content goes here -->
+        </div>
+      </div>
+    </article>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Param Pabari. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Logic to fetch article content
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if(!id) {
+            window.location.href = 'blog.html';
+            return;
+        }
+
+        // In a real static setup with individual files, you might fetch specific JSON 
+        // OR fetch the big index and find it. For scale, individual files are better.
+        // But for this Portfolio v1, we used a single index.json.
+        // Let's stick to index.json for simplicity of the "Database".
+        
+        fetch('posts/index.json')
+            .then(res => res.json())
+            .then(posts => {
+                const post = posts.find(p => p.id === id);
+                if(post) {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('article-view').style.display = 'block';
+                    
+                    document.title = post.title + " — Param Pabari";
+                    document.getElementById('art-title').textContent = post.title;
+                    document.getElementById('art-date').textContent = post.date;
+                    document.getElementById('art-body').innerHTML = post.content;
+
+                    if(post.image) {
+                        const img = document.getElementById('art-img');
+                        img.src = post.image;
+                        img.style.display = 'block';
+                    }
+                } else {
+                    document.getElementById('loading').textContent = 'Article not found.';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading').textContent = 'Error loading content.';
+            });
+    });
+  </script>
+</body>
+</html>

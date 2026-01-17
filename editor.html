@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Editor — Param Pabari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #121212;
+      --border: #333;
+      --text: #e0e0e0;
+      --accent: #d4af37;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .editor-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    input, button {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.8rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-family: inherit;
+    }
+    label { display: block; margin-bottom: 0.5rem; color: #888; font-size: 0.9rem; text-transform: uppercase;}
+    
+    /* Quill Overrides */
+    #editor { height: 400px; background: #fff; color: #000; }
+    .ql-toolbar { background: #eee; border-color: #333 !important; }
+    .ql-container { border-color: #333 !important; font-size: 1.1rem; }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .btn-primary:hover { background: var(--accent); }
+
+    .settings-panel {
+      padding: 1rem; border: 1px solid var(--border);
+      background: #111; margin-bottom: 2rem;
+    }
+    
+    #status { margin-top: 1rem; padding: 1rem; display: none; }
+    .success { background: rgba(50,205,50,0.2); border: 1px solid limegreen; }
+    .error { background: rgba(255,0,0,0.2); border: 1px solid red; }
+  </style>
+</head>
+<body>
+
+  <div class="editor-container">
+    <h1>Post Editor (Git-Backed)</h1>
+    
+    <div class="settings-panel">
+      <h3>GitHub Configuration</h3>
+      <label>Personal Access Token (Repo Scope)</label>
+      <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+      
+      <label>Repo Owner / Name</label>
+      <input type="text" id="gh-repo" placeholder="username/portfolio-site">
+      
+      <button onclick="saveConfig()" style="width:auto">Save Credentials</button>
+      <small style="display:block;margin-top:0.5rem;color:#666;">Stored locally in browser. Never sent effectively anywhere but GitHub API.</small>
+    </div>
+
+    <hr style="border-color:#222; margin: 2rem 0;">
+
+    <label>Title</label>
+    <input type="text" id="post-title" placeholder="My New Thought...">
+    
+    <label>Date</label>
+    <input type="text" id="post-date" placeholder="Oct 12, 2026" value="">
+    
+    <label>Summary</label>
+    <input type="text" id="post-summary" placeholder="Short description for the list...">
+
+    <label>Cover Image URL</label>
+    <input type="text" id="post-image" placeholder="https://...">
+
+    <label>Content</label>
+    <div id="editor"></div>
+    
+    <button class="btn-primary" onclick="publish()" style="margin-top: 2rem;">Publish to GitHub</button>
+    
+    <div id="status"></div>
+  </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+    // Init Quill
+    var quill = new Quill('#editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ 'header': [2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image']
+        ]
+      }
+    });
+
+    // Validations & Setup
+    document.getElementById('post-date').value = new Date().toLocaleDateString('en-US', {month:'short', day:'2-digit', year:'numeric'});
+    
+    const TOKEN_KEY = 'gh_token_portfolio';
+    const REPO_KEY = 'gh_repo_portfolio';
+
+    function loadConfig() {
+        const t = localStorage.getItem(TOKEN_KEY);
+        const r = localStorage.getItem(REPO_KEY);
+        if(t) document.getElementById('gh-token').value = t;
+        if(r) document.getElementById('gh-repo').value = r;
+    }
+    loadConfig();
+
+    function saveConfig() {
+        localStorage.setItem(TOKEN_KEY, document.getElementById('gh-token').value);
+        localStorage.setItem(REPO_KEY, document.getElementById('gh-repo').value);
+        alert('Credentials Saved!');
+    }
+
+    async function publish() {
+        const token = document.getElementById('gh-token').value;
+        const repo = document.getElementById('gh-repo').value;
+        const status = document.getElementById('status');
+        
+        if(!token || !repo) {
+            alert('Please configure GitHub credentials first.');
+            return;
+        }
+
+        status.style.display = 'block';
+        status.textContent = 'Fetching current posts index...';
+        status.className = '';
+
+        try {
+            // 1. Get current index.json (SHA needed for update)
+            const indexUrl = `https://api.github.com/repos/${repo}/contents/portfolio-site/posts/index.json`;
+            const resp = await fetch(indexUrl, {
+                headers: { 
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if(!resp.ok) throw new Error('Failed to fetch index.json. Check credentials/path.');
+            const fileData = await resp.json();
+            const currentContent = JSON.parse(atob(fileData.content));
+            const currentSha = fileData.sha;
+
+            // 2. Prepare new post data
+            const title = document.getElementById('post-title').value;
+            const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            
+            const newPost = {
+                id: id,
+                title: title,
+                date: document.getElementById('post-date').value,
+                summary: document.getElementById('post-summary').value,
+                image: document.getElementById('post-image').value,
+                content: quill.root.innerHTML
+            };
+
+            // 3. Add to beginning of array
+            currentContent.unshift(newPost);
+
+            // 4. Update index.json on GitHub
+            // Note: In a real "Headless" setup with individual files, we'd upload the post as a file too.
+            // But here we are just appending to the central DB file for simplicity of reading.
+            
+            status.textContent = 'Pushing to GitHub...';
+            
+            const updateBody = {
+                message: `Add post: ${title}`,
+                content: btoa(unescape(encodeURIComponent(JSON.stringify(currentContent, null, 2)))),
+                sha: currentSha,
+                branch: 'main' // modify if using different branch
+            };
+
+            const updateResp = await fetch(indexUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updateBody)
+            });
+
+            if(!updateResp.ok) throw new Error('GitHub Update Failed: ' + updateResp.statusText);
+
+            status.textContent = 'Published Successfully! It will appear on the site in ~1 min.';
+            status.className = 'success';
+            
+        } catch (e) {
+            console.error(e);
+            status.textContent = 'Error: ' + e.message;
+            status.className = 'error';
+        }
+    }
+  </script>
+</body>
+</html>

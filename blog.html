@@ -31,40 +31,9 @@
       <h1 class="fade-in">Journal</h1>
       <p class="fade-in delay-1">Notes on finance, strategy, and the markets.</p>
 
-      <div class="blog-list fade-in delay-2" style="margin-top: 4rem;">
-        
-        <a href="#" class="blog-item">
-          <div>
-            <h3>The Death of Traditional FP&A</h3>
-            <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">Why static annual budgets are failing in a dynamic economy and what rolling forecasts can do.</p>
-          </div>
-          <span class="blog-date">Oct 12, 2025</span>
-        </a>
-
-        <a href="#" class="blog-item">
-          <div>
-            <h3>Why EBITDA is Lying to You</h3>
-            <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">Understanding the gap between accounting profits and real cash flow in SaaS businesses.</p>
-          </div>
-          <span class="blog-date">Sep 28, 2025</span>
-        </a>
-
-        <a href="#" class="blog-item">
-          <div>
-            <h3>Structuring Deals in High Interest Rate Environments</h3>
-            <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">Debt is no longer cheap. How to structure LBOs when the cost of capital hits 8%.</p>
-          </div>
-          <span class="blog-date">Aug 15, 2025</span>
-        </a>
-
-        <a href="#" class="blog-item">
-          <div>
-            <h3>The Consultant's Dilemma: Advice vs. Execution</h3>
-            <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">Why the best strategy decks gather dust and how to bridge the gap.</p>
-          </div>
-          <span class="blog-date">Jul 02, 2025</span>
-        </a>
-
+      <div class="blog-list fade-in delay-2" style="margin-top: 4rem;" id="blog-list">
+        <!-- Content injected via JS -->
+        <div style="text-align:center; padding:2rem; color:#888;">Loading thoughts...</div>
       </div>
     </section>
   </main>
@@ -76,5 +45,33 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('posts/index.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('blog-list');
+                container.innerHTML = ''; // Request cleared
+                
+                data.forEach(post => {
+                    const el = document.createElement('a');
+                    el.href = `article.html?id=${post.id}`;
+                    el.className = 'blog-item';
+                    el.innerHTML = `
+                      <div>
+                        <h3>${post.title}</h3>
+                        <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">${post.summary || ''}</p>
+                      </div>
+                      <span class="blog-date">${post.date}</span>
+                    `;
+                    container.appendChild(el);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('blog-list').innerHTML = 'Failed to load posts.';
+            });
+    });
+  </script>
 </body>
 </html>
