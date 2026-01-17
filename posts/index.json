@@ -1,5 +1,13 @@
 [
   {
+    "id": "hi",
+    "title": "Hi ",
+    "date": "Jan 18, 2026",
+    "summary": "Hi There",
+    "image": "",
+    "content": "<p>Hello World</p>"
+  },
+  {
     "id": "death-of-fpa",
     "title": "The Death of Traditional FP&A",
     "date": "Oct 12, 2025",
@@ -20,6 +28,6 @@
     "title": "Structuring Deals in High Interest Rate Environments",
     "date": "Aug 15, 2025",
     "summary": "Debt is no longer cheap. How to structure LBOs when the cost of capital hits 8%.",
-    "content": "<p>When the risk-free rate is 5%, your hurdle rate isn't 10% anymore—it's 15% or 20%. This changes the leverage math entirely.</p>"
+    "content": "<p>When the risk-free rate is 5%, your hurdle rate isn't 10% anymoreâit's 15% or 20%. This changes the leverage math entirely.</p>"
   }
 ]
