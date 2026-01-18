@@ -1,11 +1,25 @@
 [
   {
+    "id": "hi-",
+    "title": "Hi ",
+    "category": "SaaS",
+    "description": "Hi There",
+    "tags": [
+      "Hello World"
+    ],
+    "image": "linear-gradient(135deg, #111, #333)",
+    "summary": "Hi There"
+  },
+  {
     "id": "series-b",
     "title": "Series B Fundraising Model",
     "category": "SaaS / Strategy",
     "summary": "Built the financial narrative and operating model for a $30M raise.",
     "description": "Developed a comprehensive financial model for a B2B SaaS platform raising $30M. Included cohort analysis, LTV/CAC sensitivity, and headcount planning.",
-    "tags": ["Excel", "Pitch Deck"],
+    "tags": [
+      "Excel",
+      "Pitch Deck"
+    ],
     "image": "linear-gradient(45deg, #111, #222)"
   },
   {
@@ -14,7 +28,10 @@
     "category": "Retail / Operations",
     "summary": "Reduced inventory overhead by 18% through predictive forecasting.",
     "description": "Analyzed SKU performance and inventory turnover for a national retailer. Recommended a dynamic reordering system that reduced working capital by 18%.",
-    "tags": ["Python", "Tableau"],
+    "tags": [
+      "Python",
+      "Tableau"
+    ],
     "image": "linear-gradient(45deg, #1a1a1a, #2a2a2a)"
   },
   {
@@ -23,7 +40,10 @@
     "category": "Fintech / M&A",
     "summary": "Commercial and financial diligence for a cross-border acquisition.",
     "description": "Led financial diligence for a $150M acquisition. Validated quality of earnings (QoE), normalized EBITDA, and identified key post-merger integration risks.",
-    "tags": ["Due Diligence", "M&A"],
+    "tags": [
+      "Due Diligence",
+      "M&A"
+    ],
     "image": "linear-gradient(45deg, #050505, #151515)"
   },
   {
@@ -32,7 +52,10 @@
     "category": "Healthcare / Consulting",
     "summary": "Mapped cost centers for a hospital network to identify redundancies.",
     "description": "Implemented a zero-based budgeting framework saving $2m annually.",
-    "tags": ["Cost Redux", "Budgeting"],
+    "tags": [
+      "Cost Redux",
+      "Budgeting"
+    ],
     "image": "linear-gradient(135deg, #1d2b24, #2b4035)"
   }
 ]
