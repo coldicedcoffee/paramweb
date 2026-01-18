@@ -11,17 +11,6 @@
     "summary": "Hi There"
   },
   {
-    "id": "hi-",
-    "title": "Hi ",
-    "category": "SaaS",
-    "description": "Hi There",
-    "tags": [
-      "Hello World"
-    ],
-    "image": "linear-gradient(135deg, #111, #333)",
-    "summary": "Hi There"
-  },
-  {
     "id": "series-b",
     "title": "Series B Fundraising Model",
     "category": "SaaS / Strategy",
