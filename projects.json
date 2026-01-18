@@ -11,18 +11,6 @@
     "summary": "Hi There"
   },
   {
-    "id": "series-b",
-    "title": "Series B Fundraising Model",
-    "category": "SaaS / Strategy",
-    "summary": "Built the financial narrative and operating model for a $30M raise.",
-    "description": "Developed a comprehensive financial model for a B2B SaaS platform raising $30M. Included cohort analysis, LTV/CAC sensitivity, and headcount planning.",
-    "tags": [
-      "Excel",
-      "Pitch Deck"
-    ],
-    "image": "linear-gradient(45deg, #111, #222)"
-  },
-  {
     "id": "supply-chain",
     "title": "Supply Chain Optimization",
     "category": "Retail / Operations",
