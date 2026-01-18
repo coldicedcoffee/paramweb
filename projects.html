@@ -31,72 +31,29 @@
       <h1 class="fade-in">Selected Projects</h1>
       <p class="fade-in delay-1">Deep dives into financial modelling, strategic advisory, and operational turnarounds.</p>
       
-      <div class="project-grid fade-in delay-2" style="margin-top: 4rem;">
-        
-        <!-- Project 1 -->
-        <article class="project-card">
-          <div class="project-image">
-             <div style="width:100%;height:100%;background:linear-gradient(135deg, #111, #333);"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">SaaS / Strategy</div>
-            <h3>Series B Fundraising Model</h3>
-            <p>Developed a comprehensive financial model for a B2B SaaS platform raising $30M. Included cohort analysis, LTV/CAC sensitivity, and headcount planning.</p>
-            <div style="margin-top:1rem">
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Excel</span>
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Pitch Deck</span>
-            </div>
-          </div>
-        </article>
+      <!-- Admin Trigger -->
+      <div class="fade-in delay-1" style="text-align: right; margin-top: 1rem;">
+        <button id="admin-trigger" style="background:transparent; border:none; color:#888; cursor:pointer; font-family:'Space Grotesk', sans-serif; font-size:0.8rem;">Admin</button>
+      </div>
 
-        <!-- Project 2 -->
-        <article class="project-card">
-          <div class="project-image">
-             <div style="width:100%;height:100%;background:linear-gradient(135deg, #0e1a2b, #1d2b40);"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">Retail / Operations</div>
-            <h3>Supply Chain Optimization</h3>
-            <p>Analyzed SKU performance and inventory turnover for a national retailer. Recommended a dynamic reordering system that reduced working capital by 18%.</p>
-            <div style="margin-top:1rem">
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Python</span>
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Tableau</span>
-            </div>
-          </div>
-        </article>
+      <!-- Add Project Form (Hidden by default) -->
+      <div id="add-project-section" style="display:none; background:#0a0a0a; padding:2rem; border:1px solid #333; margin-top:2rem; margin-bottom:2rem;">
+        <h3 style="margin-top:0; color:#d4af37;">Add New Project</h3>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <input id="p-title" type="text" placeholder="Project Title" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
+          <input id="p-category" type="text" placeholder="Category (e.g. SaaS / Strategy)" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
+        </div>
+        <textarea id="p-desc" placeholder="Description" rows="4" style="width:100%; box-sizing:border-box; background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; margin-top:1rem; font-family:inherit;"></textarea>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem;">
+          <input id="p-tags" type="text" placeholder="Tags (comma separated)" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
+          <input id="p-image" type="text" placeholder="Image URL or Gradient CSS" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
+        </div>
+        <button id="save-new-project" style="margin-top:1rem; background:#d4af37; color:#000; border:none; padding:10px 20px; cursor:pointer; font-weight:bold; font-family:inherit;">Save Project</button>
+      </div>
 
-        <!-- Project 3 -->
-        <article class="project-card">
-          <div class="project-image">
-             <div style="width:100%;height:100%;background:linear-gradient(135deg, #2b1d1d, #402b2b);"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">Fintech / M&A</div>
-            <h3>Buy-Side Due Diligence</h3>
-            <p>Led financial diligence for a $150M acquisition. Validated quality of earnings (QoE), normalized EBITDA, and identified key post-merger integration risks.</p>
-            <div style="margin-top:1rem">
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Due Diligence</span>
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">M&A</span>
-            </div>
-          </div>
-        </article>
-
-         <!-- Project 4 -->
-         <article class="project-card">
-          <div class="project-image">
-             <div style="width:100%;height:100%;background:linear-gradient(135deg, #1d2b24, #2b4035);"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">Healthcare / consulting</div>
-            <h3>Cost Structure Analysis</h3>
-            <p>Mapped cost centers for a hospital network to identify redundancies. Implemented a zero-based budgeting framework saving $2m annually.</p>
-            <div style="margin-top:1rem">
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Cost Redux</span>
-              <span style="font-size:0.8rem; border:1px solid #333; padding:2px 6px;">Budgeting</span>
-            </div>
-          </div>
-        </article>
-
+      <div id="projects-grid" class="projects-grid fade-in delay-2" style="margin-top: 4rem;">
+         <!-- Populated via admin.js -->
+         <p style="color:#666;">Loading projects...</p>
       </div>
     </section>
   </main>
@@ -107,6 +64,7 @@
     </div>
   </footer>
 
+  <script src="admin.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

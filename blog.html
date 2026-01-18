@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thoughts — Param Pabari</title>
+  <title>Journal — Param Pabari</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
@@ -31,8 +31,13 @@
       <h1 class="fade-in">Journal</h1>
       <p class="fade-in delay-1">Notes on finance, strategy, and the markets.</p>
 
+      <!-- Admin Trigger -->
+      <div class="fade-in delay-1" style="text-align: right; margin-top: 1rem;">
+        <button id="admin-trigger" style="background:transparent; border:none; color:#888; cursor:pointer; font-family:'Space Grotesk', sans-serif; font-size:0.8rem;">Admin</button>
+      </div>
+
       <div class="blog-list fade-in delay-2" style="margin-top: 4rem;" id="blog-list">
-        <!-- Content injected via JS -->
+        <!-- Content injected via admin.js -->
         <div style="text-align:center; padding:2rem; color:#888;">Loading thoughts...</div>
       </div>
     </section>
@@ -44,34 +49,7 @@
     </div>
   </footer>
 
+  <script src="admin.js"></script>
   <script src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch('posts/index.json')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('blog-list');
-                container.innerHTML = ''; // Request cleared
-                
-                data.forEach(post => {
-                    const el = document.createElement('a');
-                    el.href = `article.html?id=${post.id}`;
-                    el.className = 'blog-item';
-                    el.innerHTML = `
-                      <div>
-                        <h3>${post.title}</h3>
-                        <p style="font-size: 0.9rem; margin-top:0.5rem; max-width: 50ch; color: #888;">${post.summary || ''}</p>
-                      </div>
-                      <span class="blog-date">${post.date}</span>
-                    `;
-                    container.appendChild(el);
-                });
-            })
-            .catch(err => {
-                console.error(err);
-                document.getElementById('blog-list').innerHTML = 'Failed to load posts.';
-            });
-    });
-  </script>
 </body>
 </html>
