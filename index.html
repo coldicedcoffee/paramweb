@@ -60,38 +60,8 @@
     <section class="section container">
       <div class="fade-in">
         <h2>Selected Works</h2>
-        <div class="project-grid">
-          <article class="project-card" onclick="window.location.href='projects.html'">
-            <div class="project-image">
-              <!-- Placeholder for rough edges look, usually a grayscale img -->
-              <div style="width:100%;height:100%;background:linear-gradient(45deg, #111, #222);"></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">SaaS / Strategy</div>
-              <h3>Series B Fundraising Model</h3>
-              <p>Built the financial narrative and operating model for a $30M raise.</p>
-            </div>
-          </article>
-          <article class="project-card" onclick="window.location.href='projects.html'">
-            <div class="project-image">
-              <div style="width:100%;height:100%;background:linear-gradient(45deg, #1a1a1a, #2a2a2a);"></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">Retail / Operations</div>
-              <h3>Supply Chain Optimization</h3>
-              <p>Reduced inventory overhead by 18% through predictive forecasting.</p>
-            </div>
-          </article>
-          <article class="project-card" onclick="window.location.href='projects.html'">
-            <div class="project-image">
-              <div style="width:100%;height:100%;background:linear-gradient(45deg, #050505, #151515);"></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">Fintech / M&A</div>
-              <h3>Buy-Side Due Diligence</h3>
-              <p>Commercial and financial diligence for a cross-border acquisition.</p>
-            </div>
-          </article>
+        <div class="project-grid" id="home-projects-preview">
+          <!-- Dynamically loaded from projects.json -->
         </div>
         <div style="margin-top:3rem; text-align:center;">
           <a class="btn" href="projects.html">View All Projects</a>
@@ -102,19 +72,8 @@
     <section class="section container">
       <div class="fade-in">
         <h2>Recent Thoughts</h2>
-        <div class="blog-list">
-          <a href="#" class="blog-item">
-            <h3>The Death of Traditional FP&A</h3>
-            <span class="blog-date">Oct 12, 2025</span>
-          </a>
-          <a href="#" class="blog-item">
-            <h3>Why EBITDA is Lying to You</h3>
-            <span class="blog-date">Sep 28, 2025</span>
-          </a>
-          <a href="#" class="blog-item">
-            <h3>Structuring Deals in High Interest Rate Environments</h3>
-            <span class="blog-date">Aug 15, 2025</span>
-          </a>
+        <div class="blog-list" id="home-blog-preview">
+          <!-- Dynamically loaded from posts/index.json -->
         </div>
         <div style="margin-top:2rem;">
           <a class="btn" href="blog.html">Read Journal</a>
@@ -136,5 +95,53 @@
 
   <script src="admin.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Load preview of projects on home page
+    fetch('projects.json?t=' + Date.now())
+      .then(res => res.json())
+      .then(projects => {
+        const container = document.getElementById('home-projects-preview');
+        const preview = projects.slice(0, 3); // Show first 3 projects
+        preview.forEach(p => {
+          const article = document.createElement('article');
+          article.className = 'project-card';
+          article.onclick = () => window.location.href = 'projects.html';
+          
+          let bgStyle = p.image && p.image.includes('gradient') ? `background:${p.image}` : `background:url(${p.image}) center/cover`;
+          
+          article.innerHTML = `
+            <div class="project-image">
+              <div style="width:100%;height:100%;${bgStyle}"></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">${p.category}</div>
+              <h3>${p.title}</h3>
+              <p>${p.summary || p.description}</p>
+            </div>
+          `;
+          container.appendChild(article);
+        });
+      })
+      .catch(err => console.error('Failed to load projects preview', err));
+
+    // Load preview of blog posts on home page
+    fetch('posts/index.json?t=' + Date.now())
+      .then(res => res.json())
+      .then(posts => {
+        const container = document.getElementById('home-blog-preview');
+        const preview = posts.slice(0, 3); // Show first 3 posts
+        preview.forEach(post => {
+          const link = document.createElement('a');
+          link.href = `article.html?id=${post.id}`;
+          link.className = 'blog-item';
+          link.innerHTML = `
+            <h3>${post.title}</h3>
+            <span class="blog-date">${post.date}</span>
+          `;
+          container.appendChild(link);
+        });
+      })
+      .catch(err => console.error('Failed to load blog preview', err));
+  </script>
 </body>
 </html>
