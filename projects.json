@@ -10,17 +10,5 @@
       "M&A"
     ],
     "image": "linear-gradient(45deg, #050505, #151515)"
-  },
-  {
-    "id": "cost-structure",
-    "title": "Cost Structure Analysis",
-    "category": "Healthcare / Consulting",
-    "summary": "Mapped cost centers for a hospital network to identify redundancies.",
-    "description": "Implemented a zero-based budgeting framework saving $2m annually.",
-    "tags": [
-      "Cost Redux",
-      "Budgeting"
-    ],
-    "image": "linear-gradient(135deg, #1d2b24, #2b4035)"
   }
 ]
