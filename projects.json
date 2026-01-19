@@ -1,17 +1,5 @@
 [
   {
-    "id": "supply-chain",
-    "title": "Supply Chain Optimization",
-    "category": "Retail / Operations",
-    "summary": "Reduced inventory overhead by 18% through predictive forecasting.",
-    "description": "Analyzed SKU performance and inventory turnover for a national retailer. Recommended a dynamic reordering system that reduced working capital by 18%.",
-    "tags": [
-      "Python",
-      "Tableau"
-    ],
-    "image": "linear-gradient(45deg, #1a1a1a, #2a2a2a)"
-  },
-  {
     "id": "buy-side-dd",
     "title": "Buy-Side Due Diligence",
     "category": "Fintech / M&A",
