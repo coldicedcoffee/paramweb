@@ -146,7 +146,7 @@ function renderProjects(projects) {
                 ${tagsHtml}
             </div>
             </div>
-            <div class="admin-controls" style="display:none; padding: 10px; border-top: 1px solid #333; display:flex; gap:8px; align-items:center;">
+            <div class="admin-controls" style="display:none; padding: 10px; border-top: 1px solid #333; gap:8px; align-items:center;">
                 <button onclick="editProject(${index})" style="background:#d4af37; color:#000; border:none; padding:5px 10px; cursor:pointer;">Edit</button>
                 <button onclick="deleteProject(${index})" style="background:#ff4444; color:white; border:none; padding:5px 10px; cursor:pointer;">Delete</button>
                 ${p.download ? `<a href="${p.download}" target="_blank" style="background:#222; color:#d4af37; border:1px solid #333; padding:6px 10px; text-decoration:none;">Download</a>` : ''}
@@ -159,7 +159,7 @@ function renderProjects(projects) {
 }
 
 function renderAdminUI() {
-    document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'flex');
     const section = document.getElementById('add-project-section');
     if(section) section.style.display = 'block';
 }
@@ -357,7 +357,7 @@ function renderBlog(posts) {
             <div style="font-size:0.8rem; color:#666;">${post.date}</div>
             <h3 style="margin: 0.5rem 0;"><a href="article.html?id=${post.id}" style="text-decoration:none; color:#e0e0e0; transition:color 0.2s;">${post.title}</a></h3>
             <p style="color:#aaa;">${post.summary}</p>
-             <div class="admin-controls" style="display:none; margin-top:0.5rem; display:flex; gap:8px;">
+             <div class="admin-controls" style="display:none; margin-top:0.5rem; gap:8px;">
                 <button onclick="window.open('editor.html?id=${post.id}','_self')" style="background:#d4af37; color:#000; border:none; padding:5px 10px; cursor:pointer;">Edit</button>
                 <button onclick="deletePost('${post.id}')" style="background:#ff4444; color:white; border:none; padding:5px 10px; cursor:pointer;">Delete Post</button>
             </div>
