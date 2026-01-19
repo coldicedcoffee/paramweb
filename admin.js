@@ -531,9 +531,26 @@ async function deleteGHFile(path, sha, message) {
 }
 
 window.deletePost = deletePost;
+window.toggleSiteEditor = toggleSiteEditor;
 
 // Initialize
 checkAutoLogin();
+
+// Bind Admin and Site Edit triggers globally for all pages
+document.addEventListener('DOMContentLoaded', () => {
+    const adminBtn = document.getElementById('admin-trigger');
+    if(adminBtn && !adminBtn.hasAttribute('data-bound')) {
+        adminBtn.addEventListener('click', authenticate);
+        adminBtn.setAttribute('data-bound', 'true');
+    }
+    
+    const siteEditBtn = document.getElementById('site-edit-trigger');
+    if(siteEditBtn && !siteEditBtn.hasAttribute('data-bound')) {
+        siteEditBtn.addEventListener('click', toggleSiteEditor);
+        siteEditBtn.setAttribute('data-bound', 'true');
+    }
+});
+
 if(document.getElementById('projects-grid')) initProjects();
 if(document.getElementById('blog-list')) initBlog();
 
