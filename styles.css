@@ -159,6 +159,37 @@
 .blog-item:hover { background: var(--surface); padding-left: 2rem; padding-right: 2rem; }
 .blog-date { font-family: monospace; color: var(--text-dim); }
 
+/* Article Content Images - Responsive */
+.article-content img,
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 4px;
+}
+
+/* Article content overflow and tables */
+.article-content,
+.ql-editor {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.article-content table,
+.ql-editor table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+.article-content pre,
+.ql-editor pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
 /* Forms */
 input, textarea {
   width: 100%;
@@ -182,11 +213,39 @@ footer { padding: 4rem 0; text-align: center; color: var(--text-dim); font-size:
 
 /* Mobile */
 @media (max-width: 768px) {
+  html { font-size: 14px; }
+  
+  .container { padding: 0 1rem; }
+  
   .hero { flex-direction: column; padding-top: 4rem; text-align: center; }
-  .stat-grid { justify-content: center; }
+  .hero-display { font-size: clamp(2rem, 10vw, 3.5rem); }
+  
+  .stat-grid { flex-direction: column; gap: 2rem; justify-content: center; }
+  
   .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 2rem; border-bottom: 1px solid var(--border); text-align: center; }
   .nav-links.active { display: flex; }
   .nav-toggle { display: block; }
-  .project-grid { grid-template-columns: 1fr; }
-  .blog-item { flex-direction: column; gap: 0.5rem; }
+  
+  .project-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .project-info { padding: 1.5rem; }
+  .project-image { height: 200px; }
+  
+  .blog-item { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0; }
+  
+  .section { padding: 4rem 0; }
+  
+  /* Article content mobile improvements */
+  .article-content { font-size: 1.05rem; line-height: 1.7; }
+  .article-content img { margin: 1.5rem auto; }
+  .article-header { padding: 2rem 0 1.5rem; }
+  
+  /* Form improvements */
+  input, textarea { font-size: 1rem; }
+  .btn { padding: 0.9rem 1.5rem; font-size: 0.85rem; width: 100%; justify-content: center; }
+  
+  /* Contact page grid */
+  .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  
+  /* Admin button - larger touch target on mobile */
+  #admin-trigger { padding: 12px 16px !important; font-size: 0.9rem !important; }
 }
