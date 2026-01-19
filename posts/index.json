@@ -8,14 +8,6 @@
     "content": "<p>Hello World</p>"
   },
   {
-    "id": "ebitda-lying",
-    "title": "Why EBITDA is Lying to You",
-    "date": "Sep 28, 2025",
-    "summary": "Understanding the gap between accounting profits and real cash flow in SaaS businesses.",
-    "image": "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&q=80&w=1000",
-    "content": "<p>EBITDA is a useful metric, but it removes the very things that kill growing businesses: <strong>Working Capital</strong> and <strong>CapEx</strong>.</p>"
-  },
-  {
     "id": "structuring-deals",
     "title": "Structuring Deals in High Interest Rate Environments",
     "date": "Aug 15, 2025",
