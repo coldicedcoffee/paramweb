@@ -95,7 +95,7 @@
     <label>Content</label>
     <div id="editor"></div>
     
-    <button class="btn-primary" onclick="publish()" style="margin-top: 2rem;">Publish to GitHub</button>
+    <button id="publish-btn" class="btn-primary" onclick="publish()" style="margin-top: 2rem;">Publish to GitHub</button>
     
     <div id="status"></div>
   </div>
@@ -131,6 +131,32 @@
 
     // Validations & Setup
     document.getElementById('post-date').value = new Date().toLocaleDateString('en-US', {month:'short', day:'2-digit', year:'numeric'});
+    // If editing an existing post, prefill fields
+    const urlParams = new URLSearchParams(window.location.search);
+    const editId = urlParams.get('id');
+    let editingIndex = -1;
+    let indexFileSha = null;
+    if(editId) {
+      (async function prefill() {
+        try {
+          const resp = await fetch('posts/index.json?t=' + Date.now());
+          const posts = await resp.json();
+          const idx = posts.findIndex(p => p.id === editId);
+          if(idx > -1) {
+            const post = posts[idx];
+            document.getElementById('post-title').value = post.title || '';
+            document.getElementById('post-date').value = post.date || document.getElementById('post-date').value;
+            document.getElementById('post-summary').value = post.summary || '';
+            document.getElementById('post-image').value = post.image || '';
+            quill.root.innerHTML = post.content || '';
+                    document.getElementById('status').style.display = 'block';
+                    document.getElementById('status').textContent = 'Editing post: ' + editId;
+                    const pubBtn = document.getElementById('publish-btn');
+                    if(pubBtn) pubBtn.textContent = 'Update Post';
+          }
+        } catch(e) { console.warn('Could not prefill editor', e); }
+      })();
+    }
     
     // CAUTION: Storing tokens in client-side code is risky if the repo is public.
     // The password protection above adds a layer, but code scanners might still see it.
@@ -225,8 +251,19 @@
                 content: quill.root.innerHTML
             };
 
-            // 3. Add to beginning of array
-            currentContent.unshift(newPost);
+            // 3. If editing replace the existing post, else add to beginning of array
+            const existingIndex = currentContent.findIndex(p => p.id === id);
+            if(editId && editId === id) {
+              // find original by editId
+              const idxToReplace = currentContent.findIndex(p => p.id === editId);
+              if(idxToReplace > -1) currentContent[idxToReplace] = newPost;
+              else currentContent.unshift(newPost);
+            } else if (existingIndex > -1 && !editId) {
+              // title collides with existing id and we're not explicitly editing - replace
+              currentContent[existingIndex] = newPost;
+            } else {
+              currentContent.unshift(newPost);
+            }
 
             // 4. Update index.json on GitHub
             // Note: In a real "Headless" setup with individual files, we'd upload the post as a file too.

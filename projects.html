@@ -32,8 +32,9 @@
       <p class="fade-in delay-1">Deep dives into financial modelling, strategic advisory, and operational turnarounds.</p>
       
       <!-- Admin Trigger -->
-      <div class="fade-in delay-1" style="text-align: right; margin-top: 1rem;">
+      <div class="fade-in delay-1" style="text-align: right; margin-top: 1rem; display:flex; gap:8px; justify-content:flex-end; align-items:center;">
         <button id="admin-trigger" style="background:transparent; border:none; color:#888; cursor:pointer; font-family:'Space Grotesk', sans-serif; font-size:0.8rem;">Admin</button>
+        <button id="site-edit-trigger" style="background:transparent; border:1px solid #333; color:#888; cursor:pointer; padding:6px 8px; font-family:'Space Grotesk', sans-serif; font-size:0.8rem;">Site Edit</button>
       </div>
 
       <!-- Add Project Form (Hidden by default) -->
@@ -47,6 +48,10 @@
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem;">
           <input id="p-tags" type="text" placeholder="Tags (comma separated)" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
           <input id="p-image" type="text" placeholder="Image URL or Gradient CSS" style="background:#000; border:1px solid #333; color:#e0e0e0; padding:10px; font-family:inherit;">
+        </div>
+        <div style="margin-top:1rem;">
+          <label style="font-size:0.9rem; color:#aaa;">Attach file (PDF/PPT) for download</label>
+          <input id="p-file" type="file" accept=".pdf,.ppt,.pptx" style="display:block; margin-top:0.5rem;" />
         </div>
         <button id="save-new-project" style="margin-top:1rem; background:#d4af37; color:#000; border:none; padding:10px 20px; cursor:pointer; font-weight:bold; font-family:inherit;">Save Project</button>
       </div>
