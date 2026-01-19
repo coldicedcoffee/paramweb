@@ -8,14 +8,6 @@
     "content": "<p>Hello World</p>"
   },
   {
-    "id": "death-of-fpa",
-    "title": "The Death of Traditional FP&A",
-    "date": "Oct 12, 2025",
-    "summary": "Why static annual budgets are failing in a dynamic economy and what rolling forecasts can do.",
-    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1000",
-    "content": "<p>Focusing on the <strong>Annual Budget</strong> is like steering a ship by looking at the wake behind you. In today's volatile market environment, the static budget is dead.</p><p>We need to move towards <em>rolling forecasts</em> and driver-based planning...</p>"
-  },
-  {
     "id": "ebitda-lying",
     "title": "Why EBITDA is Lying to You",
     "date": "Sep 28, 2025",
