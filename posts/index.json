@@ -1,13 +1,5 @@
 [
   {
-    "id": "hi",
-    "title": "Hi ",
-    "date": "Jan 18, 2026",
-    "summary": "Hi There",
-    "image": "",
-    "content": "<p>Hello World</p>"
-  },
-  {
     "id": "structuring-deals",
     "title": "Structuring Deals in High Interest Rate Environments",
     "date": "Aug 15, 2025",
