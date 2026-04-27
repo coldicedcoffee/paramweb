@@ -198,7 +198,31 @@ function renderHome() {
         <div class="ach-card__detail">${a.detail}</div>
       </div>
     `).join("");
-    ct.innerHTML = items;
+    ct.innerHTML = items + items + items;
+
+    const wrapper = document.querySelector(".carousel-wrapper");
+    if (wrapper) {
+      if (wrapper._scrollFrame) cancelAnimationFrame(wrapper._scrollFrame);
+      let isHovered = false;
+      let floatScroll = wrapper.scrollLeft;
+      wrapper.addEventListener("mouseenter", () => isHovered = true);
+      wrapper.addEventListener("mouseleave", () => isHovered = false);
+      wrapper.addEventListener("touchstart", () => isHovered = true, {passive:true});
+      wrapper.addEventListener("touchend", () => isHovered = false);
+
+      const scrollStep = () => {
+        if (!isHovered) {
+          floatScroll += 0.8;
+          const third = wrapper.scrollWidth / 3;
+          if (floatScroll >= third * 2) floatScroll -= third;
+          wrapper.scrollLeft = floatScroll;
+        } else {
+          floatScroll = wrapper.scrollLeft;
+        }
+        wrapper._scrollFrame = requestAnimationFrame(scrollStep);
+      };
+      wrapper._scrollFrame = requestAnimationFrame(scrollStep);
+    }
   }
 
   initAnimations();
