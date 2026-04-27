@@ -1,106 +1,17 @@
 /* ====================================================================
-   script.js  —  Param Pabari Portfolio  (v4)
+   script.js  —  Param Pabari Portfolio  (v5 – data.json backed)
    ==================================================================== */
 
-const KEYS = {
-  blog:"pp_blog_v3", projects:"pp_projects_v3", experience:"pp_experience_v3",
-  profile:"pp_profile_v3", leadership:"pp_leadership_v3",
-  achievements:"pp_achievements_v3", session:"pp_session_v3", theme:"pp_theme",
-};
-
+const KEYS = { session:"pp_session_v3", theme:"pp_theme" };
 const PW_HASH = "60fefd770b1ea964f85db078ad6c551e1b107d568c96e12b1e213fd28fee8c0d";
-
-// ─── Default Data ────────────────────────────────────────────────────
-const DEFAULT_PROFILE = {
-  name:"Param Pabari",
-  tagline:"Private Capital & Strategic Finance",
-  description:"Mechanical Engineering at IIT Bombay with a minor in AI & Data Science. Direct experience across venture investing, business strategy, and startup operations.",
-  bio:"I'm Param Pabari — a second-year undergraduate at IIT Bombay studying Mechanical Engineering with a minor in AI & Data Science. What drives me is the intersection of capital, strategy, and execution. I spend most of my time evaluating startups, building investment theses, and working on live deal pipelines. Outside of finance, I've led large-scale technical programming on campus, mentored juniors, and competed in hockey at the institute level. I believe the best way to learn is to operate — with real stakes, real deadlines, and real accountability.",
-  email:"param.pabari@iitb.ac.in",
-  resume:"23B2136-1.pdf",
-  institution:"IIT Bombay",
-  degree:"B.TECH • CPI 8.5",
-  stats:[
-    {value:120,suffix:"+",label:"STARTUP CALLS"},
-    {value:12000,suffix:"+",label:"LABS EVALUATED"},
-    {value:15,prefix:"₹",suffix:"L+",label:"FUND MANAGED"},
-    {value:99.76,suffix:"%",decimals:2,label:"JEE PERCENTILE"},
-  ],
-};
-
-const DEFAULT_EXPERIENCE = [
-  {role:"Business Strategy Intern",org:"Traya Health",period:"Current",theme:"D2C Growth",
-    bullets:["Working on business strategy priorities for a D2C health brand with INR 237 Cr FY24 revenue.","Parallel execution with live investment analyst responsibilities."]},
-  {role:"Part-time Investment Analyst",org:"YPoint Capital",period:"Current",theme:"VC Fundside",
-    bullets:["Supporting live deal evaluation and sourcing at a VC fund with INR 250 Cr AUM.","Contributing to thesis framing, screening, and pre-investment decision flow."]},
-  {role:"Investment Analyst Intern",org:"RSPN Ventures",period:"Nov 2025 – Jan 2026",theme:"Family Office VC",
-    bullets:["Led commercial diligence on diagnostics with 3-4x acquisition vs 8-10x exit arbitrage across 12,000 labs.","Built unit-economics models; proposed service-node roll-up structure adopted in deal design."]},
-  {role:"Operations & Supply Chain Intern",org:"Armstrong Dematic",period:"May 2025 – Jul 2025",theme:"Warehouse Automation",
-    bullets:["Built a custom Traffic Editor used weekly by 10+ engineers.","Co-led four AI capability workshops for 50+ engineers.","Received Letter of Recommendation from the AGM."]},
-];
-
-const DEFAULT_LEADERSHIP = [
-  {role:"Head of Investment Team",org:"Undergraduate Academic Council, IIT Bombay",period:"Current",
-    bullets:["Scaled analyst team to 12 members across VC, Equity Research, and Quant Finance.","Created first external fund partnerships with YPoint Capital and RSPN Ventures.","Managing INR 15L+ live student investment fund targeting 15% CAGR."]},
-  {role:"Institute Web & Coding Convener",org:"Institute Technical Council, IIT Bombay",period:"2024–2025",
-    bullets:["Led IIT Bombay's first DSA bootcamp with Coding Ninjas — 800+ students in 6 weeks.","Delivered 7+ flagship events impacting 1,000+ students."]},
-  {role:"Department Academic Mentor",org:"Student Mentorship Program",period:"Jun 2025 – Present",
-    bullets:["Mentoring 6 sophomores on academics, prioritization, and co-curricular strategy."]},
-];
-
-const DEFAULT_PROJECTS = [
-  {id:"roots-healthtech",title:"Roots Ventures Healthtech Thesis",category:"Venture Capital",period:"2025",
-    summary:"Authored sector thesis across 5+ healthtech sub-sectors and mapped deployable opportunities.",
-    impact:"Mapped USD 100M+ market opportunity and recommended 11 pre-Series A targets.",
-    detail:"Profiled 10+ late-stage investors to frame realistic exit optionality for each thesis segment.",tags:["Thesis","Market Mapping","Sourcing"]},
-  {id:"bcg-ideathon",title:"BCG Ideathon GTM Strategy",category:"Consulting",period:"Aug – Nov 2024",
-    summary:"National semi-final project focused on Indian healthtech diligence and growth model design.",
-    impact:"Formulated and pitched a USD 171M GTM strategy to BCG senior reviewers.",
-    detail:"Combined customer segmentation, pricing pathways, and scale economics into one narrative.",tags:["GTM","Diligence","Case Competition"]},
-  {id:"rbi-transmission",title:"RBI Monetary Policy Transmission",category:"Macroeconomics",period:"2025",
-    summary:"Independent macro analysis of 12 RBI rate cycles from 2013 to 2025.",
-    impact:"Identified 3–4 quarter lag from rate action to real economy response.",
-    detail:"Tracked CPI easing from 7.8% to 5.7% after 250bps tightening in FY22-FY23.",tags:["Macro","Rates","Sector Rotation"]},
-  {id:"v2g2h",title:"V2G2H Charging Infrastructure",category:"Sustainability",period:"2025–2026",
-    summary:"Built vehicle-to-grid-to-home architecture for Indian residential EV contexts.",
-    impact:"Reached finals of Global Sustainability Challenge and Innomax by Thermax.",
-    detail:"Focused on deployment economics, household load balancing, and grid responsiveness.",tags:["Climate","Energy","EV"]},
-  {id:"sharda-dcf",title:"Sharda Motors DCF Thesis",category:"Equity Research",period:"2025",
-    summary:"Prepared DCF-led equity report for a national-level equity research competition.",
-    impact:"Built valuation model and investment recommendation under competition timelines.",
-    detail:"Used sensitivity testing on margins and terminal value assumptions.",tags:["DCF","Valuation","Public Markets"]},
-];
-
-const DEFAULT_POSTS = [
-  {id:"diagnostics-rollup",title:"A Practical Memo On Diagnostics Roll-Up Economics",dateISO:"2026-01-28",
-    summary:"What changes when diagnostics is modeled as a service-node roll-up rather than a loose asset basket.",
-    tags:["VC","Healthtech","Diligence"],
-    content:"<p>A diagnostics thesis only works when service density, referral pathways, and test mix are modeled together. In fragmented markets, simple top-line multiplication often hides execution drag.</p><h2>What moved the analysis</h2><p>The highest signal came from unit economics at node level and not from aggregate market-size claims. Modeling acquisition at lower multiples and exits at strategic-scale multiples created a tighter view of risk-adjusted return.</p><p>For investors, the practical question is not market size alone. It is whether integration velocity and quality consistency can compound before capital intensity erodes optionality.</p>"},
-  {id:"rbi-rate-cycles",title:"How RBI Rate Cycles Shape Equity Rotation",dateISO:"2026-02-12",
-    summary:"Twelve cycles suggest policy effects show up with a lag, but markets reprice expectations earlier.",
-    tags:["Macro","Rates","Equities"],
-    content:"<p>Across major tightening and easing windows since 2013, policy transmission to real demand has generally shown a multi-quarter lag. That lag creates a timing gap between narrative and fundamentals.</p><h2>Where this is useful</h2><p>For portfolio construction, the key is sequencing. Bond repricing tends to move first, while equity leadership rotates only after confidence on earnings durability improves.</p><p>The implication is simple: avoid one-step conclusions from policy announcements, and treat each sector by balance-sheet resilience and pricing power.</p>"},
-  {id:"student-fund-risk",title:"Building A Student Investment Fund Risk Framework",dateISO:"2026-03-03",
-    summary:"How to keep conviction high while preserving downside control in an educational portfolio setting.",
-    tags:["Portfolio","Risk","Learning"],
-    content:"<p>Student funds fail when process is replaced by opinion. A robust framework starts with allocation guardrails, review cadence, and explicit kill criteria.</p><h2>Core rules</h2><ul><li>Position sizing should reflect uncertainty and not excitement.</li><li>Each thesis must have a disconfirming signal defined in advance.</li><li>Post-mortems are mandatory for both winners and losers.</li></ul><p>The objective is to train judgement under pressure, not to chase isolated outcomes.</p>"},
-];
-
-const DEFAULT_ACHIEVEMENTS = [
-  {title:"VC Case Competition — 1st Place",detail:"1st / 200+ teams nationally with analysis of Loop Health (YC W20)."},
-  {title:"Ace The Case (M&A) — 3rd Place",detail:"3rd / 300+ teams with M&A strategy, valuation, and synergy work."},
-  {title:"BCG Ideathon — National Semi-Finalist",detail:"One of three IIT Bombay teams from 1,700+ applicants; pitched USD 171M GTM strategy."},
-  {title:"HSBC Case Challenge — National Finalist",detail:"Reached national finals with structured financial recommendation design."},
-  {title:"CFA Research Challenge Rep",detail:"First IIT Bombay team to compete nationally with institutional-style equity research."},
-  {title:"Gold Medal — Friesheista Hockey",detail:"Won gold after 150+ hours of NSO Hockey training at IIT Bombay."},
-];
+const DATA_URL = "data.json";
 
 // ─── State ───────────────────────────────────────────────────────────
 let profile, experience, leadership, projects, posts, achievements;
 
 // ─── Boot ────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  loadAllData();
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadAllData();
   initTheme();
   initNav();
   initAnimations();
@@ -110,17 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
 });
 
-function loadAllData() {
-  profile      = loadJSON(KEYS.profile)      || DEFAULT_PROFILE;
-  experience   = loadJSON(KEYS.experience)   || DEFAULT_EXPERIENCE;
-  leadership   = loadJSON(KEYS.leadership)   || DEFAULT_LEADERSHIP;
-  projects     = loadJSON(KEYS.projects)     || DEFAULT_PROJECTS;
-  posts        = loadJSON(KEYS.blog)         || DEFAULT_POSTS;
-  achievements = loadJSON(KEYS.achievements) || DEFAULT_ACHIEVEMENTS;
+async function loadAllData() {
+  try {
+    const resp = await fetch(DATA_URL + "?t=" + Date.now());
+    if (!resp.ok) throw new Error("fetch failed");
+    const data = await resp.json();
+    profile      = data.profile      || {};
+    experience   = data.experience   || [];
+    leadership   = data.leadership   || [];
+    projects     = data.projects     || [];
+    posts        = data.posts        || [];
+    achievements = data.achievements || [];
+  } catch(err) {
+    console.error("Failed to load data.json, using empty defaults:", err);
+    profile = {}; experience = []; leadership = []; projects = []; posts = []; achievements = [];
+  }
 }
-
-function loadJSON(k) { try { const r=localStorage.getItem(k); return r?JSON.parse(r):null; } catch{return null;} }
-function saveJSON(k,d) { localStorage.setItem(k,JSON.stringify(d)); }
 
 // ─── Theme Toggle ────────────────────────────────────────────────────
 function initTheme() {
@@ -162,7 +78,6 @@ function initNav() {
 }
 
 function switchPage(id) {
-  // Close reader if open
   closeReader();
   document.querySelectorAll(".page").forEach(p => p.classList.remove("page--active"));
   document.querySelector(`[data-page="${id}"]`)?.classList.add("page--active");
@@ -352,11 +267,9 @@ document.addEventListener("click", e => {
 
 // ─── Render: ABOUT ───────────────────────────────────────────────────
 function renderAbout() {
-  // Bio
   const bio = document.getElementById("about-bio");
   if (bio) bio.innerHTML = `<p>${profile.bio || ""}</p>`;
 
-  // Professional
   const tl = document.getElementById("exp-timeline");
   if (tl) {
     tl.innerHTML = experience.map(e=>`
@@ -368,7 +281,6 @@ function renderAbout() {
     `).join("");
   }
 
-  // PoR
   const por = document.getElementById("por-list");
   if (por) {
     por.innerHTML = leadership.map(e=>`
@@ -380,7 +292,6 @@ function renderAbout() {
     `).join("");
   }
 
-  // Achievements
   const al = document.getElementById("achievement-list");
   if (al) {
     al.innerHTML = achievements.map(a=>`
