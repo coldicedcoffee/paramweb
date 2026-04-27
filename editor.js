@@ -159,6 +159,16 @@ function initProfile(){
   el("pf-inst").value=profile.institution||"";
   el("pf-degree").value=profile.degree||"";
   el("pf-resume").value=profile.resume||"";
+
+  const hlIn = el("pf-heroLogo"), hlPrev = el("pf-heroLogo-preview");
+  if (profile.heroLogo) { hlPrev.src = profile.heroLogo; hlPrev.hidden = false; }
+  if (hlIn) {
+    hlIn.addEventListener("change", () => {
+      if (hlIn.files?.[0]) { hlPrev.src = URL.createObjectURL(hlIn.files[0]); hlPrev.hidden = false; }
+      else { hlPrev.hidden = true; }
+    });
+  }
+
   renderStats();
   el("pf-save")?.addEventListener("click",async()=>{
     profile.name=el("pf-name").value.trim();profile.email=el("pf-email").value.trim();
@@ -169,6 +179,13 @@ function initProfile(){
       value:+(r.querySelector("[data-sf=val]")?.value||0),suffix:r.querySelector("[data-sf=suf]")?.value||"",
       prefix:r.querySelector("[data-sf=pre]")?.value||"",label:r.querySelector("[data-sf=lbl]")?.value||"",
     }));
+
+    let imgPath = profile.heroLogo || "";
+    if (hlIn && hlIn.files?.[0]) {
+      try { imgPath = await uploadImageToGitHub(hlIn.files[0], "pf-status"); } catch(e) { return; }
+    }
+    if (imgPath) profile.heroLogo = imgPath;
+
     await commitToGitHub("pf-status");
   });
   el("ed-lock")?.addEventListener("click",()=>{sessionStorage.removeItem("pp_session_v3");sessionStorage.removeItem("pp_gh_token");location.reload();});

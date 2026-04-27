@@ -48,7 +48,8 @@ async function loadAllData() {
 // ─── Theme Toggle ────────────────────────────────────────────────────
 function initTheme() {
   const saved = localStorage.getItem(KEYS.theme);
-  if (saved === "light") document.documentElement.setAttribute("data-theme","light");
+  if (saved === "dark") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme","light");
   updateThemeIcon();
 
   document.getElementById("theme-toggle")?.addEventListener("click", () => {
@@ -130,6 +131,16 @@ function renderHome() {
   const rb = document.getElementById("resume-btn");
   if (rb && profile.resume) rb.href = profile.resume;
 
+  const hl = document.getElementById("hero-logo");
+  if (hl) {
+    if (profile.heroLogo) {
+      hl.src = profile.heroLogo;
+      hl.hidden = false;
+    } else {
+      hl.hidden = true;
+    }
+  }
+
   // Positions
   const pl = document.getElementById("positions-list");
   if (pl) {
@@ -138,6 +149,7 @@ function renderHome() {
     const all = [...current, ...leaderCurrent];
     pl.innerHTML = all.map(e => `
       <div class="pos-card anim-up">
+        ${e.image ? `<img src="${e.image}" class="pos-card__logo" alt="Logo" />` : ""}
         <div class="pos-card__role">${e.role}</div>
         <div class="pos-card__org">${e.org||""}</div>
         <div class="pos-card__period">${e.period}</div>
@@ -173,6 +185,19 @@ function renderHome() {
       el.addEventListener("click", () => openReader(sorted[+el.dataset.openPost]));
     });
   }
+
+  // Competitions Carousel
+  const ct = document.getElementById("competitions-track");
+  if (ct && achievements.length > 0) {
+    const items = achievements.map(a => `
+      <div class="ach-card">
+        <div class="ach-card__title">${a.title}</div>
+        <div class="ach-card__detail">${a.detail}</div>
+      </div>
+    `).join("");
+    ct.innerHTML = items + items + items;
+  }
+
   initAnimations();
 }
 
