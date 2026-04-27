@@ -12,23 +12,25 @@
       {
         "value": 120,
         "suffix": "+",
+        "prefix": "",
         "label": "STARTUP CALLS"
       },
       {
-        "value": 12000,
+        "value": 1000,
         "suffix": "+",
+        "prefix": "",
         "label": "LABS EVALUATED"
       },
       {
         "value": 15,
-        "prefix": "â¹",
         "suffix": "L+",
+        "prefix": "â¹",
         "label": "FUND MANAGED"
       },
       {
         "value": 99.76,
         "suffix": "%",
-        "decimals": 2,
+        "prefix": "",
         "label": "JEE PERCENTILE"
       }
     ]
