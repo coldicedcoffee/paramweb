@@ -165,13 +165,13 @@ textarea.input{resize:vertical;min-height:110px}
 [data-theme="light"] .exp-item__image{filter:grayscale(100%) opacity(.75);mix-blend-mode:multiply}
 
 /* ===== CAROUSEL ===== */
-.carousel-wrapper{overflow:hidden;white-space:nowrap;width:100%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:3rem 0}
-.carousel-track{display:inline-block;animation:scrollLeft 40s linear infinite}
-.carousel-track:hover{animation-play-state:paused}
-.ach-card{display:inline-block;width:340px;white-space:normal;vertical-align:top;padding:0 2.5rem;border-right:1px solid var(--border)}
+.carousel-wrapper{overflow-x:auto;overflow-y:hidden;white-space:nowrap;width:100%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:3rem 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.carousel-wrapper::-webkit-scrollbar{display:none}
+.carousel-track{display:inline-flex}
+.ach-card{display:inline-block;width:340px;flex-shrink:0;white-space:normal;vertical-align:top;padding:0 2.5rem;border-right:1px solid var(--border)}
+.ach-card:last-child{border-right:none}
 .ach-card__title{font-weight:600;font-size:1rem;margin-bottom:.5rem;color:var(--text)}
 .ach-card__detail{font-size:.88rem;color:var(--muted);line-height:1.6}
-@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ===== BLOG LIST ===== */
 .blog-controls{max-width:440px;margin-bottom:1.5rem}

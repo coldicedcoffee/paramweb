@@ -198,7 +198,7 @@ function renderHome() {
         <div class="ach-card__detail">${a.detail}</div>
       </div>
     `).join("");
-    ct.innerHTML = items + items + items;
+    ct.innerHTML = items;
   }
 
   initAnimations();
