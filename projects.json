@@ -1,1 +1,72 @@
-[]
+[
+	{
+		"id": "roots-healthtech-thesis",
+		"title": "Roots Ventures Healthtech Investment Thesis",
+		"category": "Venture Capital",
+		"period": "2025",
+		"summary": "Authored a sector thesis across 5+ healthtech sub-sectors for an early-stage VC context.",
+		"impact": "Mapped USD 100M+ opportunity and recommended 11 pre-Series A targets.",
+		"detail": "Profiled 10+ late-stage investors to sharpen exit pathways and strategic fit for each thesis lane.",
+		"tags": [
+			"Thesis",
+			"Sourcing",
+			"Healthtech"
+		]
+	},
+	{
+		"id": "bcg-ideathon-gtm",
+		"title": "BCG Ideathon Healthtech GTM Strategy",
+		"category": "Consulting",
+		"period": "Aug 2024 - Nov 2024",
+		"summary": "Performed diligence on Indian healthtech and built a structured go-to-market expansion recommendation.",
+		"impact": "Pitched a USD 171M GTM strategy as national semi-finalist team from IIT Bombay.",
+		"detail": "Designed channel architecture, demand segmentation, and operating assumptions for senior panel review.",
+		"tags": [
+			"GTM",
+			"Case",
+			"Diligence"
+		]
+	},
+	{
+		"id": "rbi-transmission-finsearch",
+		"title": "RBI Monetary Policy Transmission Study",
+		"category": "Macroeconomics",
+		"period": "2025",
+		"summary": "Independent macro analysis of 12 RBI rate cycles from 2013 to 2025.",
+		"impact": "Identified a consistent 3-4 quarter lag between policy action and real economy impact.",
+		"detail": "Tracked inflation response to 250 bps tightening in FY22-FY23 with CPI easing from 7.8% to 5.7%.",
+		"tags": [
+			"Macro",
+			"RBI",
+			"Sector Rotation"
+		]
+	},
+	{
+		"id": "v2g2h-bidirectional-charging",
+		"title": "V2G2H Bidirectional Charging Infrastructure",
+		"category": "Sustainability",
+		"period": "2025 - 2026",
+		"summary": "Built Vehicle-to-Grid-to-Home architecture for Indian residential EV charging contexts.",
+		"impact": "Reached finals of Global Sustainability Challenge and Innomax by Thermax.",
+		"detail": "Focused on practical deployment economics, household load balancing, and grid responsiveness.",
+		"tags": [
+			"Climate",
+			"Energy",
+			"EV"
+		]
+	},
+	{
+		"id": "sharda-motors-dcf",
+		"title": "Sharda Motors DCF Investment Thesis",
+		"category": "Equity Research",
+		"period": "2025",
+		"summary": "Developed a DCF-led investment report for a competitive equity research setting.",
+		"impact": "Framed valuation ranges and recommendation logic under competition timelines.",
+		"detail": "Used sensitivity testing on margins and terminal value assumptions to stress recommendation quality.",
+		"tags": [
+			"DCF",
+			"Valuation",
+			"Public Markets"
+		]
+	}
+]

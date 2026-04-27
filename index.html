@@ -2,146 +2,198 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Param Pabari — Finance & Consulting</title>
-  
-  <!-- Fonts: Space Grotesk (Tech/Rough) + Cormorant Garamond (Classy/Mature) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Param Pabari — Private Capital & Strategic Finance</title>
+  <meta name="description" content="Param Pabari is a finance professional at IIT Bombay with direct experience in venture capital, investment banking, and strategic consulting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="bg-grid" aria-hidden="true"></div>
 
-  <div class="grid-bg"></div>
-
-  <header class="site-header">
-    <div class="container nav-flex">
-      <a class="brand" href="index.html">Param Pabari</a>
-      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
-      <nav id="site-nav" class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="blog.html">Thoughts</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="header__brand" href="#" data-nav="home">PARAM PABARI</a>
+      <button class="header__toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header__right">
+        <nav class="header__nav" id="nav">
+          <a href="#" data-nav="home" class="active">HOME</a>
+          <a href="#" data-nav="portfolio">PORTFOLIO</a>
+          <a href="#" data-nav="thoughts">THOUGHTS</a>
+          <a href="#" data-nav="about">ABOUT</a>
+          <a href="#" data-nav="contact">CONTACT</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">☀</button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero container">
-      <div class="hero-content fade-in">
-        <h1 class="hero-display">
-          Private Capital &<br>
-          <span>Strategic Finance</span>
-        </h1>
-        <p class="fade-in delay-1">
-          Param Pabari is a finance professional specialized in Private Capital Markets, Venture Capital, and Private Equity. I help organizations navigate complex markets and optimize capital allocation.
-        </p>
-        <div class="fade-in delay-2" style="margin-top: 2rem;">
-          <a class="btn btn-primary" href="projects.html">View Case Studies</a>
-          <a class="btn" href="23B2136-1.pdf" download style="margin-left: 1rem;">Download Resume</a>
-        </div>
-
-        <div class="stat-grid fade-in delay-3" style="display:flex; align-items:center; gap:1.5rem;">
-          <div style="width: 60px;">
-              <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay Logo" style="width: 100%; height: auto; filter: grayscale(100%) brightness(1000%); opacity: 0.9;">
-          </div>
-          <div style="text-align:left;">
-             <h4 style="margin:0; font-size:1.5rem; color:#e0e0e0; font-weight:700; letter-spacing:0.02em;">IIT Bombay</h4>
-             <p style="margin:0; color:#888; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.1em;">Undergraduate</p>
+  <main id="app">
+    <!-- HOME -->
+    <div class="page page--active" data-page="home">
+      <section class="hero container">
+        <div class="hero__text anim-up">
+          <h1 class="hero__title">Private Capital &<br><em>Strategic Finance</em></h1>
+          <p class="hero__sub">Mechanical Engineering at IIT Bombay with a minor in AI & Data Science. Direct experience across venture investing, business strategy, and startup operations.</p>
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="#" data-nav="portfolio">VIEW CASE STUDIES</a>
+            <a class="btn btn--outline" id="resume-btn" href="23B2136-1.pdf" download>DOWNLOAD RESUME</a>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="hero__aside anim-up anim-delay-1">
+          <div class="hero__badge">
+            <span class="hero__badge-icon">IIT</span>
+            <div>
+              <strong>IIT Bombay</strong>
+              <span>B.TECH • CPI 8.5</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="stats container anim-up anim-delay-2">
+        <div class="stats__item"><span class="stats__number" data-count="120" data-suffix="+">0</span><span class="stats__label">STARTUP CALLS</span></div>
+        <div class="stats__divider"></div>
+        <div class="stats__item"><span class="stats__number" data-count="12000" data-suffix="+">0</span><span class="stats__label">LABS EVALUATED</span></div>
+        <div class="stats__divider"></div>
+        <div class="stats__item"><span class="stats__number" data-count="15" data-prefix="₹" data-suffix="L+">0</span><span class="stats__label">FUND MANAGED</span></div>
+        <div class="stats__divider"></div>
+        <div class="stats__item"><span class="stats__number" data-count="99.76" data-suffix="%" data-decimals="2">0</span><span class="stats__label">JEE PERCENTILE</span></div>
+      </section>
+      <section class="section container" id="home-positions">
+        <div class="section__header anim-up"><span class="label">CURRENT POSITIONS</span><h2>Where I Work</h2></div>
+        <div class="positions-grid" id="positions-list"></div>
+      </section>
+      <section class="section container" id="home-projects">
+        <div class="section__header anim-up"><span class="label">SELECTED PROJECTS</span><h2>Recent Work</h2></div>
+        <div class="cards-row" id="featured-projects"></div>
+        <div class="section__more anim-up"><a href="#" data-nav="portfolio" class="link--arrow">VIEW ALL PROJECTS →</a></div>
+      </section>
+      <section class="section container" id="home-thoughts">
+        <div class="section__header anim-up"><span class="label">LATEST WRITING</span><h2>Market Perspectives</h2></div>
+        <div class="cards-row" id="featured-posts"></div>
+        <div class="section__more anim-up"><a href="#" data-nav="thoughts" class="link--arrow">READ ALL THOUGHTS →</a></div>
+      </section>
+    </div>
 
-    <section class="section container">
-      <div class="fade-in">
-        <h2>Selected Works</h2>
-        <div class="project-grid" id="home-projects-preview">
-          <!-- Dynamically loaded from projects.json -->
+    <!-- PORTFOLIO -->
+    <div class="page" data-page="portfolio">
+      <section class="section container">
+        <div class="section__header anim-up"><span class="label">PORTFOLIO</span><h2>Investment & Strategy Projects</h2></div>
+        <div class="filter-bar anim-up" id="project-filters"></div>
+        <div class="portfolio-grid">
+          <div class="cards-col" id="project-list"></div>
+          <aside class="spotlight" id="project-spotlight">
+            <span class="label">SPOTLIGHT</span>
+            <h3 id="spot-title">Select a project</h3>
+            <p id="spot-detail">Click any project card to see details.</p>
+            <p id="spot-impact" class="spot-impact"></p>
+            <div id="spot-tags" class="spot-tags"></div>
+          </aside>
         </div>
-        <div style="margin-top:3rem; text-align:center;">
-          <a class="btn" href="projects.html">View All Projects</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <section class="section container">
-      <div class="fade-in">
-        <h2>Recent Thoughts</h2>
-        <div class="blog-list" id="home-blog-preview">
-          <!-- Dynamically loaded from posts/index.json -->
+    <!-- THOUGHTS -->
+    <div class="page" data-page="thoughts">
+      <section class="section container">
+        <div class="section__header anim-up"><span class="label">THOUGHTS</span><h2>Research & Market Notes</h2></div>
+        <div class="blog-controls anim-up"><input type="search" id="blog-search" class="input" placeholder="Search articles..." /></div>
+        <div class="filter-bar anim-up" id="blog-filters"></div>
+        <div class="blog-list" id="blog-list"></div>
+        <p class="empty-msg" id="blog-empty" hidden>No articles match your search.</p>
+      </section>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page" data-page="about">
+      <section class="section container">
+        <div class="section__header anim-up"><span class="label">ABOUT</span><h2>Who I Am</h2></div>
+        <div class="about-intro anim-up" id="about-bio"></div>
+
+        <div class="about-section anim-up" id="about-professional">
+          <h3>Professional Background</h3>
+          <div id="exp-timeline"></div>
         </div>
-        <div style="margin-top:2rem;">
-          <a class="btn" href="blog.html">Read Journal</a>
+
+        <div class="about-section anim-up" id="about-por">
+          <h3>Institute Positions of Responsibility</h3>
+          <div id="por-list"></div>
         </div>
-      </div>
-    </section>
+
+        <div class="about-section anim-up" id="about-competitions">
+          <h3>Competition Record</h3>
+          <div id="achievement-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" data-page="contact">
+      <section class="section container">
+        <div class="contact-grid">
+          <div class="contact-info anim-up">
+            <span class="label">CONNECT</span>
+            <h2>Let's discuss opportunities.</h2>
+            <p class="contact-sub">Open to VC, IB, and consulting conversations. Fast replies for relevant outreach.</p>
+            <div class="contact-links">
+              <div><span class="label">EMAIL</span><a href="mailto:param.pabari@iitb.ac.in" class="link--gold">param.pabari@iitb.ac.in</a></div>
+              <div><span class="label">RESUME</span><a href="23B2136-1.pdf" download class="link--gold">Download CV</a></div>
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <label class="form-field"><span>NAME</span><input type="text" id="c-name" class="input" placeholder="Your name" required /></label>
+              <label class="form-field"><span>EMAIL</span><input type="email" id="c-email" class="input" placeholder="you@co.com" required /></label>
+            </div>
+            <label class="form-field"><span>TOPIC</span><input type="text" id="c-topic" class="input" placeholder="Role, thesis, deal..." required /></label>
+            <label class="form-field"><span>MESSAGE</span><textarea id="c-msg" class="input" rows="4" placeholder="Context, timeline, specifics..." required></textarea></label>
+            <button type="submit" class="btn btn--solid btn--full">SEND MESSAGE</button>
+            <p id="form-status" class="form-status"></p>
+          </form>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Param Pabari. All rights reserved.</p>
+  <!-- Article Reader (full page overlay) -->
+  <div class="reader" id="reader" hidden>
+    <div class="reader__inner">
+      <button class="reader__back" id="reader-back">← BACK TO ARTICLES</button>
+      <div class="reader__meta" id="reader-meta"></div>
+      <h1 class="reader__title" id="reader-title"></h1>
+      <p class="reader__summary" id="reader-summary"></p>
+      <div class="reader__body" id="reader-body"></div>
+      <div class="reader__tags" id="reader-tags"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand">PARAM PABARI</span>
+      <span class="footer__copy">© <span id="year"></span></span>
     </div>
   </footer>
 
-  <!-- Fixed Admin Toolbar -->
-  <div style="position:fixed; bottom:12px; right:12px; z-index:9998;">
-    <button id="admin-trigger" style="background:#111; border:1px solid #333; color:#888; cursor:pointer; font-family:'Space Grotesk', sans-serif; font-size:0.8rem; padding:8px 12px;">Admin</button>
+  <!-- Admin -->
+  <div class="admin-trigger"><button class="admin-btn" id="admin-open">⚙</button></div>
+  <div class="admin-overlay" id="admin-overlay" hidden>
+    <div class="admin-modal">
+      <h3>Admin Access</h3>
+      <p>Enter the password to manage site content.</p>
+      <input type="password" id="admin-pw" class="input" placeholder="Password" />
+      <div class="admin-modal__btns">
+        <button class="btn btn--solid" id="admin-go">UNLOCK</button>
+        <button class="btn btn--outline" id="admin-cancel">CANCEL</button>
+      </div>
+      <p id="admin-err" class="form-status"></p>
+    </div>
   </div>
 
-  <script src="admin.js"></script>
   <script src="script.js"></script>
-  <script>
-    // Load preview of projects on home page
-    fetch('projects.json?t=' + Date.now())
-      .then(res => res.json())
-      .then(projects => {
-        const container = document.getElementById('home-projects-preview');
-        const preview = projects.slice(0, 3); // Show first 3 projects
-        preview.forEach(p => {
-          const article = document.createElement('article');
-          article.className = 'project-card';
-          article.onclick = () => window.location.href = 'projects.html';
-          
-          let bgStyle = p.image && p.image.includes('gradient') ? `background:${p.image}` : `background:url(${p.image}) center/cover`;
-          
-          article.innerHTML = `
-            <div class="project-image">
-              <div style="width:100%;height:100%;${bgStyle}"></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">${p.category}</div>
-              <h3>${p.title}</h3>
-              <p>${p.summary || p.description}</p>
-            </div>
-          `;
-          container.appendChild(article);
-        });
-      })
-      .catch(err => console.error('Failed to load projects preview', err));
-
-    // Load preview of blog posts on home page
-    fetch('posts/index.json?t=' + Date.now())
-      .then(res => res.json())
-      .then(posts => {
-        const container = document.getElementById('home-blog-preview');
-        const preview = posts.slice(0, 3); // Show first 3 posts
-        preview.forEach(post => {
-          const link = document.createElement('a');
-          link.href = `article.html?id=${post.id}`;
-          link.className = 'blog-item';
-          link.innerHTML = `
-            <h3>${post.title}</h3>
-            <span class="blog-date">${post.date}</span>
-          `;
-          container.appendChild(link);
-        });
-      })
-      .catch(err => console.error('Failed to load blog preview', err));
-  </script>
 </body>
 </html>

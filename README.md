@@ -1,35 +1,86 @@
-# Portfolio Website — Finance & Consulting
+# Param Pabari Portfolio Site
 
-This is a minimal, responsive static portfolio site intended for a finance/consultant professional. It is designed to be hosted as a static site (GitHub Pages, Netlify, Vercel, etc.).
+This is a multi-page, dynamic portfolio website for a finance-focused student profile. It is a static front-end project (HTML/CSS/JS) that runs without a backend.
 
-Getting started locally:
+## Features
 
-1. Open the folder `portfolio-site` in your editor or serve it with a static server.
+- Multi-page site:
+	- `index.html` (home)
+	- `about.html`
+	- `projects.html`
+	- `blog.html`
+	- `article.html`
+	- `contact.html`
+	- `editor.html` (private blog editor)
+- Dynamic content rendering from local JS/JSON data.
+- Smooth UI interactions:
+	- reveal-on-scroll animations
+	- counter animations
+	- project filtering
+	- blog search and tag filtering
+- Contact flow with validation and prefilled mail composer (`mailto`).
+- Password-protected rich blog editor with:
+	- Quill rich text editor
+	- image upload from device
+	- video embed support
+	- create/edit/delete posts
+	- JSON import/export
+	- reset-to-seed data
 
-Quick preview using Python (if installed):
+## Local Run
+
+Use any static server. Example with Python:
 
 ```bash
 cd portfolio-site
 python -m http.server 8000
-# then open http://localhost:8000
 ```
 
-Deploy to GitHub Pages:
+Then open `http://localhost:8000`.
 
-1. Create a new GitHub repository (e.g. `username/portfolio`).
-2. From the `portfolio-site` directory run:
+## Data Sources
 
-```bash
-git init
-git add .
-git commit -m "Initial portfolio site"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
+- Projects: `projects.json`
+- Seed blog posts: `posts/index.json`
+- Runtime blog storage (browser): `localStorage` key
+	- `param_portfolio_blog_posts_v2`
+
+## Editor Access
+
+- Open `editor.html`.
+- Default password: `firebolt`
+- On successful login, a session key is set in browser `sessionStorage`:
+	- `param_editor_session_v2`
+
+### Change Editor Password
+
+1. Generate SHA-256 for your new password.
+2. Replace `EDITOR_PASSWORD_HASH` in `editor.js`.
+
+Browser console example to generate hash:
+
+```js
+async function hashPassword(value) {
+	const bytes = new TextEncoder().encode(value);
+	const digest = await crypto.subtle.digest("SHA-256", bytes);
+	return Array.from(new Uint8Array(digest))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("");
+}
+
+hashPassword("your-new-password").then(console.log);
 ```
 
-3. In the repository settings -> Pages: set the source to `main` branch and `/ (root)` folder. GitHub Pages will publish the site shortly.
+## Deployment
 
-Optional:
-- Replace `Your Name` in `index.html` and fill the case studies.
-- Point the contact form to Formspree or your preferred form endpoint.
+Deploy as a static site to GitHub Pages, Netlify, Vercel, or any static host.
+
+For GitHub Pages:
+
+1. Push the `portfolio-site` files to a repository.
+2. In repository settings, enable Pages from the root of the main branch.
+
+## Notes
+
+- Blog posts created from the editor are stored per browser/device unless exported.
+- Use Export JSON regularly for backup and portability.
