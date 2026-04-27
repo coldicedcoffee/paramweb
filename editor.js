@@ -106,6 +106,37 @@ async function commitToGitHub(statusElId){
   }
 }
 
+async function uploadImageToGitHub(file, statusElId){
+  const statusEl=document.getElementById(statusElId);
+  if(statusEl){statusEl.textContent="Uploading image...";statusEl.style.color="var(--gold)";}
+  const ext=file.name.split('.').pop();
+  const filename=`assets/img-${Date.now()}.${ext}`;
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=async()=>{
+      try{
+        const base64=reader.result.split(',')[1];
+        const resp=await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${filename}`,{
+          method:"PUT",headers:{"Authorization":`token ${ghToken}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+          body:JSON.stringify({message:`Upload image: ${filename}`,content:base64})
+        });
+        if(!resp.ok)throw new Error("Upload failed");
+        if(statusEl){statusEl.textContent="Image uploaded.";statusEl.style.color="var(--ok)";}
+        resolve(filename);
+      }catch(e){
+        if(statusEl){statusEl.textContent="Image upload failed.";statusEl.style.color="var(--danger)";}
+        reject(e);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleImagePreview(pfx){
+  const input=document.getElementById(`${pfx}-image`), prev=document.getElementById(`${pfx}-image-preview`);
+  if(input&&prev){ input.addEventListener("change",()=>{ if(input.files?.[0]){prev.src=URL.createObjectURL(input.files[0]);prev.hidden=false;}else{prev.hidden=true;} }); }
+}
+
 // ── Tabs ─────────────────────────────────────────────────────────────
 function initTabs(){
   const tabs=document.querySelectorAll(".ed-tab");
@@ -175,6 +206,8 @@ function initCRUD(panelKey,getArr,setArr,prefix,fields,bulletsField){
     document.getElementById(`${prefix==="por"?"por":"exp"}-form-title`).textContent="Add New";
     fields.forEach(f=>document.getElementById(`${prefix}-${f}`).value="");
     if(bulletsField) document.getElementById(`${prefix}-${bulletsField}`).value="";
+    const fileIn=document.getElementById(`${prefix}-image`), prev=document.getElementById(`${prefix}-image-preview`);
+    if(fileIn){fileIn.value="";prev.hidden=true;}
     msg(`${prefix}-status`,"","");
   }
 
@@ -184,6 +217,8 @@ function initCRUD(panelKey,getArr,setArr,prefix,fields,bulletsField){
     document.getElementById(`${prefix==="por"?"por":"exp"}-form-title`).textContent="Edit";
     fields.forEach(f=>document.getElementById(`${prefix}-${f}`).value=e[f]||"");
     if(bulletsField) document.getElementById(`${prefix}-${bulletsField}`).value=(e[bulletsField]||[]).join("\n");
+    const fileIn=document.getElementById(`${prefix}-image`), prev=document.getElementById(`${prefix}-image-preview`);
+    if(fileIn){fileIn.value="";if(e.image){prev.src=e.image;prev.hidden=false;}else{prev.hidden=true;}}
     msg(`${prefix}-status`,`Editing: ${e.role|""}`, "ok");
   };
   window.crudOpen=function(pfx,i){ (window[`_crudOpen_${pfx}`]||function(){})(pfx,i); };
@@ -202,7 +237,11 @@ function initCRUD(panelKey,getArr,setArr,prefix,fields,bulletsField){
     if(!rec[fields[0]])return msg(`${prefix}-status`,`${fields[0]} required.`,"err");
     if(bulletsField) rec[bulletsField]=document.getElementById(`${prefix}-${bulletsField}`).value.split("\n").map(s=>s.trim()).filter(Boolean);
     const arr=getArr();
-    if(editIdx!==null) arr[editIdx]=rec; else arr.unshift(rec);
+    const fileIn=document.getElementById(`${prefix}-image`);
+    let imgPath=arr[editIdx]?.image||"";
+    if(fileIn&&fileIn.files?.[0]) { try{imgPath=await uploadImageToGitHub(fileIn.files[0],`${prefix}-status`);}catch(e){return;} }
+    if(fileIn) rec.image=imgPath;
+    if(editIdx!==null) Object.assign(arr[editIdx],rec); else arr.unshift(rec);
     setArr(arr);renderList();
     await commitToGitHub(`${prefix}-status`);
   });
@@ -214,12 +253,13 @@ function initCRUD(panelKey,getArr,setArr,prefix,fields,bulletsField){
     await commitToGitHub(`${prefix}-status`);
   });
 
+  handleImagePreview(prefix);
   renderList();
 }
 
 // ── PROJECTS ─────────────────────────────────────────────────────────
 function initProjectEditor(){
-  renderProjList();
+  renderProjList();handleImagePreview("pj");
   document.getElementById("pj-save")?.addEventListener("click",saveProj);
   document.getElementById("pj-new")?.addEventListener("click",()=>{editIdx=null;clearProjForm();});
   document.getElementById("pj-del")?.addEventListener("click",deleteProj);
@@ -245,18 +285,24 @@ window.openProj=function(i){
   document.getElementById("pj-title").value=p.title;document.getElementById("pj-cat").value=p.category||"";
   document.getElementById("pj-period").value=p.period||"";document.getElementById("pj-tags").value=(p.tags||[]).join(", ");
   document.getElementById("pj-summary").value=p.summary||"";document.getElementById("pj-impact").value=p.impact||"";
-  document.getElementById("pj-detail").value=p.detail||"";msg("pj-status",`Editing: ${p.title}`,"ok");
+  document.getElementById("pj-detail").value=p.detail||"";
+  const fileIn=document.getElementById("pj-image"), prev=document.getElementById("pj-image-preview");
+  fileIn.value="";if(p.image){prev.src=p.image;prev.hidden=false;}else{prev.hidden=true;}
+  msg("pj-status",`Editing: ${p.title}`,"ok");
 };
 window.moveProj=function(i,dir){
   const j=i+dir;if(j<0||j>=projects.length)return;
   [projects[i],projects[j]]=[projects[j],projects[i]];
   renderProjList();
 };
-function clearProjForm(){editIdx=null;document.getElementById("proj-form-title").textContent="Add Project";["pj-title","pj-cat","pj-period","pj-tags","pj-summary","pj-impact","pj-detail"].forEach(id=>document.getElementById(id).value="");msg("pj-status","","");}
+function clearProjForm(){editIdx=null;document.getElementById("proj-form-title").textContent="Add Project";["pj-title","pj-cat","pj-period","pj-tags","pj-summary","pj-impact","pj-detail"].forEach(id=>document.getElementById(id).value="");document.getElementById("pj-image").value="";document.getElementById("pj-image-preview").hidden=true;msg("pj-status","","");}
 async function saveProj(){
   const title=document.getElementById("pj-title").value.trim();if(!title)return msg("pj-status","Title required.","err");
-  const rec={id:editIdx!==null?projects[editIdx].id:slug(title),title,category:document.getElementById("pj-cat").value.trim()||"General",period:document.getElementById("pj-period").value.trim(),tags:document.getElementById("pj-tags").value.split(",").map(s=>s.trim()).filter(Boolean),summary:document.getElementById("pj-summary").value.trim(),impact:document.getElementById("pj-impact").value.trim(),detail:document.getElementById("pj-detail").value.trim()};
-  if(editIdx!==null)projects[editIdx]=rec;else projects.unshift(rec);
+  let imgPath=projects[editIdx]?.image||"";
+  const fileIn=document.getElementById("pj-image");
+  if(fileIn.files?.[0]){ try{imgPath=await uploadImageToGitHub(fileIn.files[0],"pj-status");}catch(e){return;} }
+  const rec={id:editIdx!==null?projects[editIdx].id:slug(title),title,category:document.getElementById("pj-cat").value.trim()||"General",period:document.getElementById("pj-period").value.trim(),tags:document.getElementById("pj-tags").value.split(",").map(s=>s.trim()).filter(Boolean),summary:document.getElementById("pj-summary").value.trim(),impact:document.getElementById("pj-impact").value.trim(),detail:document.getElementById("pj-detail").value.trim(),image:imgPath};
+  if(editIdx!==null)Object.assign(projects[editIdx],rec);else projects.unshift(rec);
   renderProjList();await commitToGitHub("pj-status");
 }
 async function deleteProj(){if(editIdx===null)return msg("pj-status","Select first.","err");if(!confirm("Delete?"))return;projects.splice(editIdx,1);clearProjForm();renderProjList();await commitToGitHub("pj-status");}
@@ -290,7 +336,7 @@ async function deleteAch(){if(editIdx===null)return msg("ach-status","Select fir
 function initBlogEditor(){
   quill=new Quill("#quill-editor",{theme:"snow",modules:{toolbar:[[{header:[1,2,3,false]}],["bold","italic","underline"],[{list:"ordered"},{list:"bullet"}],["blockquote","code-block"],["link","image"],["clean"]]}});
   document.getElementById("bl-date").value=isoDate(new Date());
-  renderBlogList();
+  renderBlogList();handleImagePreview("bl");
   document.getElementById("bl-save")?.addEventListener("click",saveBlog);
   document.getElementById("bl-new")?.addEventListener("click",()=>{editIdx=null;clearBlogForm();});
   document.getElementById("bl-del")?.addEventListener("click",deleteBlog);
@@ -310,10 +356,10 @@ function renderBlogList(){
     </div>
   `).join("")||"<p style='color:var(--muted)'>No posts.</p>";
 }
-window.openBlog=function(i){const p=posts[i];if(!p)return;editIdx=i;document.getElementById("blog-form-title").textContent="Edit Post";document.getElementById("bl-title").value=p.title;document.getElementById("bl-date").value=p.dateISO||"";document.getElementById("bl-summary").value=p.summary||"";document.getElementById("bl-tags").value=(p.tags||[]).join(", ");if(quill)quill.root.innerHTML=p.content||"";msg("bl-status",`Editing: ${p.title}`,"ok");};
+window.openBlog=function(i){const p=posts[i];if(!p)return;editIdx=i;document.getElementById("blog-form-title").textContent="Edit Post";document.getElementById("bl-title").value=p.title;document.getElementById("bl-date").value=p.dateISO||"";document.getElementById("bl-summary").value=p.summary||"";document.getElementById("bl-tags").value=(p.tags||[]).join(", ");if(quill)quill.root.innerHTML=p.content||"";const fileIn=document.getElementById("bl-image"), prev=document.getElementById("bl-image-preview");fileIn.value="";if(p.image){prev.src=p.image;prev.hidden=false;}else{prev.hidden=true;}msg("bl-status",`Editing: ${p.title}`,"ok");};
 window.moveBlog=function(i,dir){const j=i+dir;if(j<0||j>=posts.length)return;[posts[i],posts[j]]=[posts[j],posts[i]];renderBlogList();};
-function clearBlogForm(){editIdx=null;document.getElementById("blog-form-title").textContent="Add Post";["bl-title","bl-summary","bl-tags"].forEach(id=>document.getElementById(id).value="");document.getElementById("bl-date").value=isoDate(new Date());if(quill)quill.setContents([]);msg("bl-status","","");}
-async function saveBlog(){const title=document.getElementById("bl-title").value.trim();if(!title)return msg("bl-status","Title required.","err");const rec={id:editIdx!==null?posts[editIdx].id:slug(title),title,dateISO:document.getElementById("bl-date").value,summary:document.getElementById("bl-summary").value.trim(),tags:document.getElementById("bl-tags").value.split(",").map(s=>s.trim()).filter(Boolean),content:quill?quill.root.innerHTML.trim():""};if(editIdx!==null)posts[editIdx]=rec;else posts.unshift(rec);renderBlogList();await commitToGitHub("bl-status");}
+function clearBlogForm(){editIdx=null;document.getElementById("blog-form-title").textContent="Add Post";["bl-title","bl-summary","bl-tags"].forEach(id=>document.getElementById(id).value="");document.getElementById("bl-date").value=isoDate(new Date());document.getElementById("bl-image").value="";document.getElementById("bl-image-preview").hidden=true;if(quill)quill.setContents([]);msg("bl-status","","");}
+async function saveBlog(){const title=document.getElementById("bl-title").value.trim();if(!title)return msg("bl-status","Title required.","err");let imgPath=posts[editIdx]?.image||"";const fileIn=document.getElementById("bl-image");if(fileIn.files?.[0]){ try{imgPath=await uploadImageToGitHub(fileIn.files[0],"bl-status");}catch(e){return;} }const rec={id:editIdx!==null?posts[editIdx].id:slug(title),title,dateISO:document.getElementById("bl-date").value,summary:document.getElementById("bl-summary").value.trim(),tags:document.getElementById("bl-tags").value.split(",").map(s=>s.trim()).filter(Boolean),content:quill?quill.root.innerHTML.trim():"",image:imgPath};if(editIdx!==null)Object.assign(posts[editIdx],rec);else posts.unshift(rec);renderBlogList();await commitToGitHub("bl-status");}
 async function deleteBlog(){if(editIdx===null)return msg("bl-status","Select first.","err");if(!confirm("Delete?"))return;posts.splice(editIdx,1);clearBlogForm();renderBlogList();await commitToGitHub("bl-status");}
 
 // ── Utilities ────────────────────────────────────────────────────────
