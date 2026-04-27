@@ -1,0 +1,11 @@
+# Autopush script (local tool, not deployed)
+autopush.ps1
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~

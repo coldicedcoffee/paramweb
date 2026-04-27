@@ -4,6 +4,7 @@
 
 const KEYS = { session:"pp_session_v3", theme:"pp_theme" };
 const PW_HASH = "60fefd770b1ea964f85db078ad6c551e1b107d568c96e12b1e213fd28fee8c0d";
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/coldicedcoffee/paramweb/main/data.json";
 const DATA_URL = "data.json";
 
 // ─── State ───────────────────────────────────────────────────────────
@@ -22,20 +23,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadAllData() {
-  try {
-    const resp = await fetch(DATA_URL + "?t=" + Date.now());
-    if (!resp.ok) throw new Error("fetch failed");
-    const data = await resp.json();
-    profile      = data.profile      || {};
-    experience   = data.experience   || [];
-    leadership   = data.leadership   || [];
-    projects     = data.projects     || [];
-    posts        = data.posts        || [];
-    achievements = data.achievements || [];
-  } catch(err) {
-    console.error("Failed to load data.json, using empty defaults:", err);
-    profile = {}; experience = []; leadership = []; projects = []; posts = []; achievements = [];
+  // Try GitHub raw first (always fresh), fall back to local copy
+  const urls = [GITHUB_RAW_URL + "?t=" + Date.now(), DATA_URL + "?t=" + Date.now()];
+  for (const url of urls) {
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error("fetch failed: " + resp.status);
+      const data = await resp.json();
+      profile      = data.profile      || {};
+      experience   = data.experience   || [];
+      leadership   = data.leadership   || [];
+      projects     = data.projects     || [];
+      posts        = data.posts        || [];
+      achievements = data.achievements || [];
+      return; // success — stop trying
+    } catch(err) {
+      console.warn("Failed to load from " + url + ":", err.message);
+    }
   }
+  console.error("All data sources failed, using empty defaults.");
+  profile = {}; experience = []; leadership = []; projects = []; posts = []; achievements = [];
 }
 
 // ─── Theme Toggle ────────────────────────────────────────────────────
