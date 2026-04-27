@@ -3,11 +3,11 @@
     "name": "Param Pabari",
     "tagline": "Private Capital & Strategic Finance",
     "description": "Mechanical Engineering at IIT Bombay with a minor in AI & Data Science. Direct experience across venture investing, business strategy, and startup operations.",
-    "bio": "I'm Param Pabari â a second-year undergraduate at IIT Bombay studying Mechanical Engineering with a minor in AI & Data Science. What drives me is the intersection of capital, strategy, and execution. I spend most of my time evaluating startups, building investment theses, and working on live deal pipelines. Outside of finance, I've led large-scale technical programming on campus, mentored juniors, and competed in hockey at the institute level. I believe the best way to learn is to operate â with real stakes, real deadlines, and real accountability.",
+    "bio": "I'm Param Pabari Ã¢ÂÂ a second-year undergraduate at IIT Bombay studying Mechanical Engineering with a minor in AI & Data Science. What drives me is the intersection of capital, strategy, and execution. I spend most of my time evaluating startups, building investment theses, and working on live deal pipelines. Outside of finance, I've led large-scale technical programming on campus, mentored juniors, and competed in hockey at the institute level. I believe the best way to learn is to operate Ã¢ÂÂ with real stakes, real deadlines, and real accountability.",
     "email": "parampabari@iitb.ac.in",
     "resume": "23B2136-1.pdf",
     "institution": "IIT Bombay",
-    "degree": "B.TECH â¢ CPI 8.5",
+    "degree": "B.TECH Ã¢ÂÂ¢ CPI 8.5",
     "stats": [
       {
         "value": 120,
@@ -24,7 +24,7 @@
       {
         "value": 15,
         "suffix": "L+",
-        "prefix": "â¹",
+        "prefix": "Ã¢ÂÂ¹",
         "label": "FUND MANAGED"
       },
       {
@@ -47,19 +47,9 @@
       ]
     },
     {
-      "role": "Part-time Investment Analyst",
-      "org": "YPoint Capital",
-      "period": "Current",
-      "theme": "VC Fundside",
-      "bullets": [
-        "Supporting live deal evaluation and sourcing at a VC fund with INR 250 Cr AUM.",
-        "Contributing to thesis framing, screening, and pre-investment decision flow."
-      ]
-    },
-    {
       "role": "Investment Analyst Intern",
       "org": "RSPN Ventures",
-      "period": "Nov 2025 â Jan 2026",
+      "period": "Nov 2025 Ã¢ÂÂ Jan 2026",
       "theme": "Family Office VC",
       "bullets": [
         "Led commercial diligence on diagnostics with 3-4x acquisition vs 8-10x exit arbitrage across 12,000 labs.",
@@ -69,7 +59,7 @@
     {
       "role": "Operations & Supply Chain Intern",
       "org": "Armstrong Dematic",
-      "period": "May 2025 â Jul 2025",
+      "period": "May 2025 Ã¢ÂÂ Jul 2025",
       "theme": "Warehouse Automation",
       "bullets": [
         "Built a custom Traffic Editor used weekly by 10+ engineers.",
@@ -92,16 +82,16 @@
     {
       "role": "Institute Web & Coding Convener",
       "org": "Institute Technical Council, IIT Bombay",
-      "period": "2024â2025",
+      "period": "2024Ã¢ÂÂ2025",
       "bullets": [
-        "Led IIT Bombay's first DSA bootcamp with Coding Ninjas â 800+ students in 6 weeks.",
+        "Led IIT Bombay's first DSA bootcamp with Coding Ninjas Ã¢ÂÂ 800+ students in 6 weeks.",
         "Delivered 7+ flagship events impacting 1,000+ students."
       ]
     },
     {
       "role": "Department Academic Mentor",
       "org": "Student Mentorship Program",
-      "period": "Jun 2025 â Present",
+      "period": "Jun 2025 Ã¢ÂÂ Present",
       "bullets": [
         "Mentoring 6 sophomores on academics, prioritization, and co-curricular strategy."
       ]
@@ -126,7 +116,7 @@
       "id": "bcg-ideathon",
       "title": "BCG Ideathon GTM Strategy",
       "category": "Consulting",
-      "period": "Aug â Nov 2024",
+      "period": "Aug Ã¢ÂÂ Nov 2024",
       "summary": "National semi-final project focused on Indian healthtech diligence and growth model design.",
       "impact": "Formulated and pitched a USD 171M GTM strategy to BCG senior reviewers.",
       "detail": "Combined customer segmentation, pricing pathways, and scale economics into one narrative.",
@@ -142,7 +132,7 @@
       "category": "Macroeconomics",
       "period": "2025",
       "summary": "Independent macro analysis of 12 RBI rate cycles from 2013 to 2025.",
-      "impact": "Identified 3â4 quarter lag from rate action to real economy response.",
+      "impact": "Identified 3Ã¢ÂÂ4 quarter lag from rate action to real economy response.",
       "detail": "Tracked CPI easing from 7.8% to 5.7% after 250bps tightening in FY22-FY23.",
       "tags": [
         "Macro",
@@ -154,7 +144,7 @@
       "id": "v2g2h",
       "title": "V2G2H Charging Infrastructure",
       "category": "Sustainability",
-      "period": "2025â2026",
+      "period": "2025Ã¢ÂÂ2026",
       "summary": "Built vehicle-to-grid-to-home architecture for Indian residential EV contexts.",
       "impact": "Reached finals of Global Sustainability Challenge and Innomax by Thermax.",
       "detail": "Focused on deployment economics, household load balancing, and grid responsiveness.",
@@ -219,19 +209,19 @@
   ],
   "achievements": [
     {
-      "title": "VC Case Competition â 1st Place",
+      "title": "VC Case Competition Ã¢ÂÂ 1st Place",
       "detail": "1st / 200+ teams nationally with analysis of Loop Health (YC W20)."
     },
     {
-      "title": "Ace The Case (M&A) â 3rd Place",
+      "title": "Ace The Case (M&A) Ã¢ÂÂ 3rd Place",
       "detail": "3rd / 300+ teams with M&A strategy, valuation, and synergy work."
     },
     {
-      "title": "BCG Ideathon â National Semi-Finalist",
+      "title": "BCG Ideathon Ã¢ÂÂ National Semi-Finalist",
       "detail": "One of three IIT Bombay teams from 1,700+ applicants; pitched USD 171M GTM strategy."
     },
     {
-      "title": "HSBC Case Challenge â National Finalist",
+      "title": "HSBC Case Challenge Ã¢ÂÂ National Finalist",
       "detail": "Reached national finals with structured financial recommendation design."
     },
     {
@@ -239,7 +229,7 @@
       "detail": "First IIT Bombay team to compete nationally with institutional-style equity research."
     },
     {
-      "title": "Gold Medal â Friesheista Hockey",
+      "title": "Gold Medal Ã¢ÂÂ Friesheista Hockey",
       "detail": "Won gold after 150+ hours of NSO Hockey training at IIT Bombay."
     }
   ]
