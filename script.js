@@ -132,12 +132,15 @@ function renderHome() {
   if (rb && profile.resume) rb.href = profile.resume;
 
   const hl = document.getElementById("hero-logo");
+  const hSvg = document.getElementById("hero-badge-svg");
   if (hl) {
     if (profile.heroLogo) {
       hl.src = profile.heroLogo;
       hl.hidden = false;
+      if(hSvg) hSvg.hidden = true;
     } else {
       hl.hidden = true;
+      if(hSvg) hSvg.hidden = false;
     }
   }
 
@@ -304,9 +307,12 @@ function renderAbout() {
   if (tl) {
     tl.innerHTML = experience.map(e=>`
       <div class="exp-item anim-up">
-        <div class="exp-item__role">${e.role}</div>
-        <div class="exp-item__meta">${e.org||""} · ${e.period}</div>
-        <ul class="exp-item__bullets">${(e.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
+        <div class="exp-item__content">
+          <div class="exp-item__role">${e.role}</div>
+          <div class="exp-item__meta">${e.org||""} · ${e.period}</div>
+          <ul class="exp-item__bullets">${(e.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
+        </div>
+        ${e.image ? `<img src="${e.image}" class="exp-item__image" alt="Logo" />` : ""}
       </div>
     `).join("");
   }
@@ -315,9 +321,11 @@ function renderAbout() {
   if (por) {
     por.innerHTML = leadership.map(e=>`
       <div class="exp-item anim-up">
-        <div class="exp-item__role">${e.role}</div>
-        <div class="exp-item__meta">${e.org||""} · ${e.period}</div>
-        <ul class="exp-item__bullets">${(e.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
+        <div class="exp-item__content">
+          <div class="exp-item__role">${e.role}</div>
+          <div class="exp-item__meta">${e.org||""} · ${e.period}</div>
+          <ul class="exp-item__bullets">${(e.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
+        </div>
         ${e.image ? `<img src="${e.image}" class="exp-item__image" alt="Logo" />` : ""}
       </div>
     `).join("");
