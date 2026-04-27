@@ -24,18 +24,18 @@
 
 /* ===== LIGHT MODE ===== */
 [data-theme="light"]{
-  --bg:#f5f3ef;
-  --surface:#fff;
-  --surface-hover:#f0ede8;
-  --border:#ddd;
-  --border-hover:#bbb;
-  --text:#1a1a1a;
-  --muted:#666;
-  --gold:#a07d28;
-  --gold-dim:rgba(160,125,40,.1);
-  --header-bg:rgba(245,243,239,.9);
-  --grid-opacity:.18;
-  --card-hover:#f8f6f2;
+  --bg:#fcfcf7;
+  --surface:#ffffff;
+  --surface-hover:#f8f7f2;
+  --border:#e6e4db;
+  --border-hover:#d1ceb8;
+  --text:#333333;
+  --muted:#7a7873;
+  --gold:#b39130;
+  --gold-dim:rgba(179,145,48,.1);
+  --header-bg:rgba(252,252,247,.9);
+  --grid-opacity:.25;
+  --card-hover:#faf9f4;
 }
 
 /* ===== RESET ===== */
