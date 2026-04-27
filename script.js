@@ -190,27 +190,24 @@ function renderPortfolio() {
   if (list) {
     list.innerHTML = visible.map(p=>`
       <div class="card anim-up" data-pid="${p.id}">
+        ${p.image ? `<img src="${p.image}" class="card__image" alt="Cover" />` : ""}
         <span class="card__label">${p.category} · ${p.period}</span>
         <div class="card__title">${p.title}</div>
         <div class="card__desc">${p.summary}</div>
-        <div class="card__footer">${p.impact}</div>
+        <div class="card__expanded">
+          <p>${p.detail||""}</p>
+          ${p.impact ? `<div class="card__impact">${p.impact}</div>` : ""}
+          <div class="card__tags">${(p.tags||[]).map(t=>`<span>${t}</span>`).join("")}</div>
+        </div>
       </div>
     `).join("");
     list.querySelectorAll("[data-pid]").forEach(n=>n.addEventListener("click",()=>{
-      const sel=projects.find(p=>p.id===n.dataset.pid);
-      if(sel) renderSpotlight(sel);
-      list.querySelectorAll(".card").forEach(c=>c.classList.remove("selected"));
-      n.classList.add("selected");
+      const isExpanded = n.classList.contains("expanded");
+      list.querySelectorAll(".card").forEach(c=>c.classList.remove("expanded"));
+      if (!isExpanded) n.classList.add("expanded");
     }));
   }
-  if(visible.length>0) renderSpotlight(visible[0]);
   initAnimations();
-}
-function renderSpotlight(p) {
-  document.getElementById("spot-title").textContent=p.title;
-  document.getElementById("spot-detail").textContent=p.detail||p.summary;
-  document.getElementById("spot-impact").textContent=p.impact;
-  document.getElementById("spot-tags").innerHTML=(p.tags||[]).map(t=>`<span>${t}</span>`).join("");
 }
 
 // ─── Render: THOUGHTS ────────────────────────────────────────────────
@@ -236,6 +233,7 @@ function renderThoughts() {
   if(list){
     list.innerHTML=filtered.map((p,i)=>`
       <div class="card anim-up" data-blog-idx="${i}">
+        ${p.image ? `<img src="${p.image}" class="card__image" alt="Cover" />` : ""}
         <span class="card__label">${fmtDate(p.dateISO)}</span>
         <div class="card__title">${p.title}</div>
         <div class="card__desc">${p.summary}</div>
@@ -295,6 +293,7 @@ function renderAbout() {
         <div class="exp-item__role">${e.role}</div>
         <div class="exp-item__meta">${e.org||""} · ${e.period}</div>
         <ul class="exp-item__bullets">${(e.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
+        ${e.image ? `<img src="${e.image}" class="exp-item__image" alt="Logo" />` : ""}
       </div>
     `).join("");
   }
