@@ -81,7 +81,8 @@
         "Scaled analyst team to 12 members across VC, Equity Research, and Quant Finance.",
         "Created first external fund partnerships with YPoint Capital and RSPN Ventures.",
         "Managing INR 15L+ live student investment fund targeting 15% CAGR."
-      ]
+      ],
+      "image": "assets/img-1780730634106.png"
     },
     {
       "role": "Institute Web & Coding Convener",
@@ -213,8 +214,16 @@
   ],
   "achievements": [
     {
+      "title": "HSBC Case Challenge | National Finalist",
+      "detail": "Reached national finals with structured financial recommendation design."
+    },
+    {
       "title": "VC Case Competition | 1st Place",
       "detail": "1st / 200+ teams nationally with analysis of Loop Health (YC W20)."
+    },
+    {
+      "title": "CFA Research Challenge Rep",
+      "detail": "First IIT Bombay team to compete nationally with institutional-style equity research."
     },
     {
       "title": "Ace The Case (M&A) | 3rd Place",
@@ -223,14 +232,6 @@
     {
       "title": "BCG Ideathon | National Semi-Finalist",
       "detail": "One of three IIT Bombay teams from 1,700+ applicants; pitched USD 171M GTM strategy."
-    },
-    {
-      "title": "HSBC Case Challenge | National Finalist",
-      "detail": "Reached national finals with structured financial recommendation design."
-    },
-    {
-      "title": "CFA Research Challenge Rep",
-      "detail": "First IIT Bombay team to compete nationally with institutional-style equity research."
     },
     {
       "title": "Gold Medal | Friesheista Hockey",
