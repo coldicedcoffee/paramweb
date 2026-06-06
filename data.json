@@ -151,7 +151,7 @@
       "id": "v2g2h",
       "title": "V2G2H Charging Infrastructure",
       "category": "Sustainability",
-      "period": "2025ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ2026",
+      "period": "2025 2026",
       "summary": "Built vehicle-to-grid-to-home architecture for Indian residential EV contexts.",
       "impact": "Reached finals of Global Sustainability Challenge and Innomax by Thermax.",
       "detail": "Focused on deployment economics, household load balancing, and grid responsiveness.",
@@ -159,7 +159,8 @@
         "Climate",
         "Energy",
         "EV"
-      ]
+      ],
+      "image": ""
     },
     {
       "id": "sharda-dcf",
